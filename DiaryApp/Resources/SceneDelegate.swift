@@ -24,7 +24,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             (DiaryProgressViewController(), "tag.fill"),
             (ProfileViewController(), "person.fill"),
         ]
-
+        
         tabBarController.setViewControllers(tabs.map { root, icon in
             let navigationController = UINavigationController(rootViewController: root)
             let tabBarItem = UITabBarItem(title: nil, image: .init(systemName: icon), selectedImage: .init(systemName: "\(icon).fill"))

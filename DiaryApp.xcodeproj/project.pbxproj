@@ -23,6 +23,9 @@
 		4E98A3B62A9CAA16003052D3 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E98A3B52A9CAA16003052D3 /* ProfileViewController.swift */; };
 		4E98A3B82A9CAD27003052D3 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E98A3B72A9CAD27003052D3 /* User.swift */; };
 		4E98A3BA2A9CAD60003052D3 /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E98A3B92A9CAD60003052D3 /* Weather.swift */; };
+		4E98A3BD2A9CB918003052D3 /* CustomCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E98A3BC2A9CB918003052D3 /* CustomCollectionView.swift */; };
+		4E98A3BF2A9CBA1B003052D3 /* HomeFeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E98A3BE2A9CBA1B003052D3 /* HomeFeedCell.swift */; };
+		4E98A3C12A9CCFB8003052D3 /* CustomImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E98A3C02A9CCFB8003052D3 /* CustomImageView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +47,9 @@
 		4E98A3B52A9CAA16003052D3 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		4E98A3B72A9CAD27003052D3 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		4E98A3B92A9CAD60003052D3 /* Weather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
+		4E98A3BC2A9CB918003052D3 /* CustomCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCollectionView.swift; sourceTree = "<group>"; };
+		4E98A3BE2A9CBA1B003052D3 /* HomeFeedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeFeedCell.swift; sourceTree = "<group>"; };
+		4E98A3C02A9CCFB8003052D3 /* CustomImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomImageView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +121,9 @@
 			isa = PBXGroup;
 			children = (
 				4E98A3992A9CA57E003052D3 /* LaunchScreen.storyboard */,
+				4E98A3BC2A9CB918003052D3 /* CustomCollectionView.swift */,
+				4E98A3BE2A9CBA1B003052D3 /* HomeFeedCell.swift */,
+				4E98A3C02A9CCFB8003052D3 /* CustomImageView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -199,6 +208,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4E98A3BD2A9CB918003052D3 /* CustomCollectionView.swift in Sources */,
 				4E98A3932A9CA57B003052D3 /* TabBarController.swift in Sources */,
 				4E98A38F2A9CA57B003052D3 /* AppDelegate.swift in Sources */,
 				4E98A3912A9CA57B003052D3 /* SceneDelegate.swift in Sources */,
@@ -208,10 +218,12 @@
 				4E98A3BA2A9CAD60003052D3 /* Weather.swift in Sources */,
 				4E98A3B82A9CAD27003052D3 /* User.swift in Sources */,
 				4E98A3B62A9CAA16003052D3 /* ProfileViewController.swift in Sources */,
+				4E98A3BF2A9CBA1B003052D3 /* HomeFeedCell.swift in Sources */,
 				4E98A3AE2A9CA748003052D3 /* DetailDiaryViewController.swift in Sources */,
 				4E98A3AC2A9CA70B003052D3 /* DiaryListViewController.swift in Sources */,
 				4E98A3B02A9CA762003052D3 /* DiaryProgressViewController.swift in Sources */,
 				4E98A3A62A9CA6A6003052D3 /* NewDiaryViewController.swift in Sources */,
+				4E98A3C12A9CCFB8003052D3 /* CustomImageView.swift in Sources */,
 				4E98A3AA2A9CA6F6003052D3 /* ProgressListViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
