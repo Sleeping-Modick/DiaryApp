@@ -10,5 +10,6 @@ import UIKit
 class DetailDiaryViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .systemBackground
     }
 }

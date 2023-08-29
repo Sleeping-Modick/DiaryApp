@@ -20,7 +20,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let tabs: [(root: UIViewController, icon: String)] = [
             (HomeViewController(), "house"),
             (DiaryListViewController(), "list.bullet"),
-            (DiaryCalenderViewController(), "plus.square"),
+            (NewDiaryViewController(), "plus.square"),
             (DiaryProgressViewController(), "tag.fill"),
             (ProfileViewController(), "person.fill"),
         ]
