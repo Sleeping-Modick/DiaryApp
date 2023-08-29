@@ -13,3 +13,4 @@ class DiaryListViewController: UIViewController {
         view.backgroundColor = .systemBackground
     }
 }
+
