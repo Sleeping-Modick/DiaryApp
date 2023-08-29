@@ -7,7 +7,7 @@
 
 import UIKit
 
-private enum Const {
+enum Const {
     static let itemSize = CGSize(width: 300, height: 550)
     static let itemSpacing = 46.0
 
@@ -16,7 +16,7 @@ private enum Const {
     }
 
     static var collectionViewContentInset: UIEdgeInsets {
-        UIEdgeInsets(top: 40, left: Self.insetX, bottom: 10, right: Self.insetX)
+        UIEdgeInsets(top: 0, left: Self.insetX, bottom: 0, right: Self.insetX)
     }
 }
 
@@ -63,10 +63,10 @@ class HomeViewController: UIViewController {
         view.addSubview(collectionView)
 
         NSLayoutConstraint.activate([
-            collectionView.topAnchor.constraint(equalTo: view.topAnchor),
+            collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20),
         ])
     }
 

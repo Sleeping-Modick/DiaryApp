@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4E1550842A9E049100C8A500 /* DiaryListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1550832A9E049100C8A500 /* DiaryListCell.swift */; };
 		4E98A38F2A9CA57B003052D3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E98A38E2A9CA57B003052D3 /* AppDelegate.swift */; };
 		4E98A3912A9CA57B003052D3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E98A3902A9CA57B003052D3 /* SceneDelegate.swift */; };
 		4E98A3932A9CA57B003052D3 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E98A3922A9CA57B003052D3 /* TabBarController.swift */; };
@@ -29,6 +30,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4E1550832A9E049100C8A500 /* DiaryListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryListCell.swift; sourceTree = "<group>"; };
 		4E98A38B2A9CA57B003052D3 /* DiaryApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DiaryApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E98A38E2A9CA57B003052D3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4E98A3902A9CA57B003052D3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -122,6 +124,7 @@
 			children = (
 				4E98A3992A9CA57E003052D3 /* LaunchScreen.storyboard */,
 				4E98A3BC2A9CB918003052D3 /* CustomCollectionView.swift */,
+				4E1550832A9E049100C8A500 /* DiaryListCell.swift */,
 				4E98A3BE2A9CBA1B003052D3 /* HomeFeedCell.swift */,
 				4E98A3C02A9CCFB8003052D3 /* CustomImageView.swift */,
 			);
@@ -215,6 +218,7 @@
 				4E98A3A32A9CA634003052D3 /* HomeViewController.swift in Sources */,
 				4E98A3B22A9CA781003052D3 /* DiaryCalenderViewController.swift in Sources */,
 				4E98A3A82A9CA6B6003052D3 /* EditDiaryViewController.swift in Sources */,
+				4E1550842A9E049100C8A500 /* DiaryListCell.swift in Sources */,
 				4E98A3BA2A9CAD60003052D3 /* Weather.swift in Sources */,
 				4E98A3B82A9CAD27003052D3 /* User.swift in Sources */,
 				4E98A3B62A9CAA16003052D3 /* ProfileViewController.swift in Sources */,
