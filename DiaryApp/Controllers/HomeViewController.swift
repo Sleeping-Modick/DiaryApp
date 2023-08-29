@@ -7,6 +7,7 @@
 
 import UIKit
 
+<<<<<<< HEAD
 private enum Const {
     static let itemSize = CGSize(width: 300, height: 550)
     static let itemSpacing = 46.0
@@ -104,5 +105,11 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
         let cellWidth = Const.itemSize.width + Const.itemSpacing
         let index = round(scrolledOffsetX / cellWidth)
         targetContentOffset.pointee = CGPoint(x: index * cellWidth - scrollView.contentInset.left, y: scrollView.contentInset.top)
+=======
+class HomeViewController: UIViewController {
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        view.backgroundColor = .systemBackground
+>>>>>>> develop
     }
 }
