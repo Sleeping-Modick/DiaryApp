@@ -51,12 +51,6 @@ class DiaryListViewController: UIViewController {
         collectionView.snp.makeConstraints { make in
             make.top.leading.trailing.bottom.equalTo(view.safeAreaLayoutGuide)
         }
-//        NSLayoutConstraint.activate([
-//            collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-//            collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-//            collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-//            collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-//        ])
     }
 }
 
@@ -67,7 +61,13 @@ extension DiaryListViewController: UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DiaryListCell.identifier, for: indexPath) as? DiaryListCell else { return UICollectionViewCell() }
+        cell.diaryTitleLabel.text = "Hello World"
+        cell.startDayLabel.text = "2023.08.30"
+        cell.endDayLabel.text = "2023.09.30"
+
         cell.backgroundColor = .systemPink
+        cell.collectionView.backgroundColor = .systemBlue
+        cell.collectionView.layer.cornerRadius = 10
         cell.layer.cornerRadius = 20
         return cell
     }
