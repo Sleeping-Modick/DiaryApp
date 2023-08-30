@@ -7,7 +7,7 @@
 
 import UIKit
 
-private enum Const {
+enum Const {
     static let itemSize = CGSize(width: 300, height: 550)
     static let itemSpacing = 46.0
 
