@@ -5,7 +5,7 @@
 //  Created by (^ㅗ^)7 iMac on 2023/08/29.
 //
 
-import Foundation
+import UIKit
 
 final class CustomLabel: UILabel {
     override init(frame: CGRect) {

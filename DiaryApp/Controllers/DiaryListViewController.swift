@@ -5,6 +5,7 @@
 //  Created by (^ㅗ^)7 iMac on 2023/08/28.
 //
 
+import SnapKit
 import UIKit
 
 class DiaryListViewController: UIViewController {
@@ -47,12 +48,15 @@ class DiaryListViewController: UIViewController {
     private func configureLayout() {
         view.addSubview(collectionView)
 
-        NSLayoutConstraint.activate([
-            collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-        ])
+        collectionView.snp.makeConstraints { make in
+            make.top.leading.trailing.bottom.equalTo(view.safeAreaLayoutGuide)
+        }
+//        NSLayoutConstraint.activate([
+//            collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+//            collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+//            collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+//            collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+//        ])
     }
 }
 
