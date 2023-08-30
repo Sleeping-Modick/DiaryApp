@@ -49,7 +49,8 @@ class DiaryListViewController: UIViewController {
         view.addSubview(collectionView)
 
         collectionView.snp.makeConstraints { make in
-            make.top.leading.trailing.bottom.equalTo(view.safeAreaLayoutGuide)
+            make.top.leading.trailing.equalTo(view.safeAreaLayoutGuide)
+            make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-10)
         }
     }
 }
