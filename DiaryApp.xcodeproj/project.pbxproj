@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+<<<<<<< HEAD
 		4E1550842A9E049100C8A500 /* DiaryListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1550832A9E049100C8A500 /* DiaryListCell.swift */; };
 		4E1550892A9E0C6500C8A500 /* CustomStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1550882A9E0C6500C8A500 /* CustomStackView.swift */; };
 		4E15508B2A9E0DF500C8A500 /* CustomLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E15508A2A9E0DF500C8A500 /* CustomLabel.swift */; };
@@ -14,6 +15,9 @@
 		4E6138B22A9F2664003A2B37 /* DiaryListThumbnailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E6138B12A9F2664003A2B37 /* DiaryListThumbnailCell.swift */; };
 		4E6138B42A9F4E87003A2B37 /* DiaryProgressCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E6138B32A9F4E87003A2B37 /* DiaryProgressCell.swift */; };
 		4E6138B62A9F56E0003A2B37 /* CircleProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E6138B52A9F56E0003A2B37 /* CircleProgressBar.swift */; };
+=======
+		4E6138B02A9EEF50003A2B37 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 4E6138AF2A9EEF50003A2B37 /* SnapKit */; };
+>>>>>>> 5765151 ([FEAT]: Snapkit 패키지 추가가)
 		4E98A38F2A9CA57B003052D3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E98A38E2A9CA57B003052D3 /* AppDelegate.swift */; };
 		4E98A3912A9CA57B003052D3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E98A3902A9CA57B003052D3 /* SceneDelegate.swift */; };
 		4E98A3932A9CA57B003052D3 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E98A3922A9CA57B003052D3 /* TabBarController.swift */; };
