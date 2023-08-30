@@ -7,7 +7,7 @@
 
 import UIKit
 
-enum Const {
+private enum Const {
     static let itemSize = CGSize(width: 300, height: 550)
     static let itemSpacing = 46.0
 
@@ -25,7 +25,7 @@ class HomeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemGray6
+        view.backgroundColor = .systemBackground
         configureCollectionView()
         configureLayout()
         addSearchBar()
