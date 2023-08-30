@@ -13,6 +13,7 @@
 		4E6138B02A9EEF50003A2B37 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 4E6138AF2A9EEF50003A2B37 /* SnapKit */; };
 		4E6138B22A9F2664003A2B37 /* DiaryListThumbnailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E6138B12A9F2664003A2B37 /* DiaryListThumbnailCell.swift */; };
 		4E6138B42A9F4E87003A2B37 /* DiaryProgressCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E6138B32A9F4E87003A2B37 /* DiaryProgressCell.swift */; };
+		4E6138B62A9F56E0003A2B37 /* CircleProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E6138B52A9F56E0003A2B37 /* CircleProgressBar.swift */; };
 		4E98A38F2A9CA57B003052D3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E98A38E2A9CA57B003052D3 /* AppDelegate.swift */; };
 		4E98A3912A9CA57B003052D3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E98A3902A9CA57B003052D3 /* SceneDelegate.swift */; };
 		4E98A3932A9CA57B003052D3 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E98A3922A9CA57B003052D3 /* TabBarController.swift */; };
@@ -40,6 +41,7 @@
 		4E15508A2A9E0DF500C8A500 /* CustomLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLabel.swift; sourceTree = "<group>"; };
 		4E6138B12A9F2664003A2B37 /* DiaryListThumbnailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryListThumbnailCell.swift; sourceTree = "<group>"; };
 		4E6138B32A9F4E87003A2B37 /* DiaryProgressCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryProgressCell.swift; sourceTree = "<group>"; };
+		4E6138B52A9F56E0003A2B37 /* CircleProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleProgressBar.swift; sourceTree = "<group>"; };
 		4E98A38B2A9CA57B003052D3 /* DiaryApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DiaryApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E98A38E2A9CA57B003052D3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4E98A3902A9CA57B003052D3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -148,6 +150,7 @@
 				4E98A3C02A9CCFB8003052D3 /* CustomImageView.swift */,
 				4E1550882A9E0C6500C8A500 /* CustomStackView.swift */,
 				4E15508A2A9E0DF500C8A500 /* CustomLabel.swift */,
+				4E6138B52A9F56E0003A2B37 /* CircleProgressBar.swift */,
 				4E1550852A9E0BBB00C8A500 /* Cells */,
 			);
 			path = Views;
@@ -243,6 +246,7 @@
 				4E98A3932A9CA57B003052D3 /* TabBarController.swift in Sources */,
 				4E98A38F2A9CA57B003052D3 /* AppDelegate.swift in Sources */,
 				4E98A3912A9CA57B003052D3 /* SceneDelegate.swift in Sources */,
+				4E6138B62A9F56E0003A2B37 /* CircleProgressBar.swift in Sources */,
 				4E98A3A32A9CA634003052D3 /* HomeViewController.swift in Sources */,
 				4E98A3B22A9CA781003052D3 /* DiaryCalenderViewController.swift in Sources */,
 				4E6138B22A9F2664003A2B37 /* DiaryListThumbnailCell.swift in Sources */,
