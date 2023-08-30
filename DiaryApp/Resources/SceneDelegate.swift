@@ -21,8 +21,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             (HomeViewController(), "house"),
             (DiaryListViewController(), "list.bullet"),
             (NewDiaryViewController(), "plus.square"),
-            (DiaryProgressViewController(), "tag.fill"),
-            (ProfileViewController(), "person.fill"),
+            (DiaryProgressViewController(), "tag"),
+            (ProfileViewController(), "person"),
         ]
 
         tabBarController.setViewControllers(tabs.map { root, icon in
