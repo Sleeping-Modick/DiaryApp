@@ -47,7 +47,7 @@ class DiaryProgressViewController: UIViewController {
         collectionView.clipsToBounds = true
         collectionView.isPagingEnabled = false
         collectionView.contentInsetAdjustmentBehavior = .never
-        collectionView.contentInset = Const.collectionViewContentInset
+        collectionView.contentInset = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
         collectionView.decelerationRate = .fast
 
         if let flowlayout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
@@ -59,13 +59,14 @@ class DiaryProgressViewController: UIViewController {
 
 extension DiaryProgressViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 15
+        return 7
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DiaryProgressCell.identifier, for: indexPath) as? DiaryProgressCell else { return UICollectionViewCell() }
-
-        cell.backgroundColor = .systemPink
+        cell.backgroundColor = .clear
+        cell.circularProgressBarView.createCircularPath(0.3)
+        cell.percentLabel.text = "\(30)%"
         return cell
     }
 }
@@ -73,7 +74,7 @@ extension DiaryProgressViewController: UICollectionViewDataSource {
 extension DiaryProgressViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let interItemSpacing: CGFloat = 10
-        let padding: CGFloat = 16
+        let padding: CGFloat = 10
         let width = (collectionView.bounds.width - interItemSpacing * 2 - padding * 2) / 2
         print("### \(width)")
         let height = width

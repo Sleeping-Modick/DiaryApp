@@ -13,10 +13,11 @@ final class CircleProgressBar: UIView {
     private var progressLayer = CAShapeLayer()
     private var startPoint = CGFloat(-Double.pi / 2)
     private var endPoint = CGFloat(3 * Double.pi / 2)
+    var dayCount: Double?
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        createCircularPath()
+        createCircularPath(dayCount ?? 0)
     }
 
     @available(*, unavailable)
@@ -24,8 +25,8 @@ final class CircleProgressBar: UIView {
         fatalError("init(coder:) has not been implemented")
     }
 
-    func createCircularPath() {
-        let circularPath = UIBezierPath(arcCenter: CGPoint(x: frame.size.width / 2.0, y: frame.size.height / 2.0), radius: 80, startAngle: startPoint, endAngle: endPoint, clockwise: true)
+    func createCircularPath(_ strokeEnd: Double) {
+        let circularPath = UIBezierPath(arcCenter: CGPoint(x: frame.size.width / 2.0, y: frame.size.height / 2.0), radius: 65, startAngle: startPoint, endAngle: endPoint, clockwise: true)
         // circleLayer path defined to circularPath
         circleLayer.path = circularPath.cgPath
         // ui edits
@@ -41,21 +42,21 @@ final class CircleProgressBar: UIView {
         // ui edits
         progressLayer.fillColor = UIColor.clear.cgColor
         progressLayer.lineCap = .round
-        progressLayer.lineWidth = 10.0
-        progressLayer.strokeEnd = 0
-        progressLayer.strokeColor = UIColor.systemOrange.cgColor
+        progressLayer.lineWidth = 20.0
+        progressLayer.strokeEnd = strokeEnd
+        progressLayer.strokeColor = UIColor.systemBlue.cgColor
         // added progressLayer to layer
         layer.addSublayer(progressLayer)
     }
 
-    func progressAnimation(duration: TimeInterval) {
-        // created circularProgressAnimation with keyPath
-        let circularProgressAnimation = CABasicAnimation(keyPath: "strokeEnd")
-        // set the end time
-        circularProgressAnimation.duration = 30
-        circularProgressAnimation.toValue = 10.0
-        circularProgressAnimation.fillMode = .forwards
-        circularProgressAnimation.isRemovedOnCompletion = false
-        progressLayer.add(circularProgressAnimation, forKey: "progressAnim")
-    }
+//    func progressAnimation(duration: TimeInterval) {
+//        // created circularProgressAnimation with keyPath
+//        let circularProgressAnimation = CABasicAnimation(keyPath: "strokeEnd")
+//        // set the end time
+//        circularProgressAnimation.duration = 30
+//        circularProgressAnimation.toValue = 3
+//        circularProgressAnimation.fillMode = .forwards
+//        circularProgressAnimation.isRemovedOnCompletion = false
+//        progressLayer.add(circularProgressAnimation, forKey: "progressAnim")
+//    }
 }

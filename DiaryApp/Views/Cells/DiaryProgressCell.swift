@@ -23,12 +23,17 @@ final class DiaryProgressCell: UICollectionViewCell {
         circularProgressBarView.translatesAutoresizingMaskIntoConstraints = false
 
         circularProgressBarView.center = contentView.center
-        circularProgressBarView.progressAnimation(duration: 30)
+//        circularProgressBarView.progressAnimation(duration: 30)
         percentLabel.text = "100%"
 
         contentView.addSubview(circularProgressBarView)
         circularProgressBarView.snp.makeConstraints { make in
             make.centerX.centerY.equalTo(contentView)
+        }
+        
+        circularProgressBarView.addSubview(percentLabel)
+        percentLabel.snp.makeConstraints { make in
+            make.centerX.centerY.equalTo(circularProgressBarView)
         }
     }
 
