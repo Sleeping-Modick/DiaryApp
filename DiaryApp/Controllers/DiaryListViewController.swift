@@ -74,7 +74,12 @@ extension DiaryListViewController: UICollectionViewDataSource {
     }
 }
 
-extension DiaryListViewController: UICollectionViewDelegate {}
+extension DiaryListViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let vc = ProgressListViewController()
+        navigationController?.pushViewController(vc, animated: true)
+    }
+}
 
 extension DiaryListViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

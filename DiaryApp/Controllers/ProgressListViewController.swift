@@ -8,6 +8,8 @@
 import UIKit
 
 class ProgressListViewController: UIViewController {
+    static let identifier = "ProgressListViewController"
+
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground

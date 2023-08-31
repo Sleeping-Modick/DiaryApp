@@ -141,13 +141,3 @@ extension DiaryListCell: UICollectionViewDataSource {
         return cell
     }
 }
-
-extension DiaryListCell: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let interItemSpacing: CGFloat = 10
-        let padding: CGFloat = 10
-        let width = (collectionView.bounds.width - interItemSpacing * 3 - padding * 2) / 3
-        let height = width
-        return CGSize(width: width, height: height)
-    }
-}
