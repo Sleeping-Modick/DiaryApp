@@ -21,10 +21,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             (HomeViewController(), "house"),
             (DiaryListViewController(), "list.bullet"),
             (NewDiaryViewController(), "plus.square"),
-            (DiaryProgressViewController(), "tag.fill"),
-            (ProfileViewController(), "person.fill"),
+            (DiaryProgressViewController(), "tag"),
+            (ProfileViewController(), "person"),
         ]
-
+        
         tabBarController.setViewControllers(tabs.map { root, icon in
             let navigationController = UINavigationController(rootViewController: root)
             let tabBarItem = UITabBarItem(title: nil, image: .init(systemName: icon), selectedImage: .init(systemName: "\(icon).fill"))
