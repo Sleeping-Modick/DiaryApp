@@ -17,6 +17,7 @@
 		4E6138C42A9F9FBA003A2B37 /* CircleProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E6138C32A9F9FBA003A2B37 /* CircleProgressBar.swift */; };
 		4E6138C62A9F9FDE003A2B37 /* HomeFeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E6138C52A9F9FDE003A2B37 /* HomeFeedCell.swift */; };
 		4E6138C92A9FA164003A2B37 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4E6138C82A9FA164003A2B37 /* LaunchScreen.storyboard */; };
+		4E7A15042AA0A9C8005FCD9C /* ProgressListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E7A15032AA0A9C8005FCD9C /* ProgressListCell.swift */; };
 		4E98A38F2A9CA57B003052D3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E98A38E2A9CA57B003052D3 /* AppDelegate.swift */; };
 		4E98A3912A9CA57B003052D3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E98A3902A9CA57B003052D3 /* SceneDelegate.swift */; };
 		4E98A3932A9CA57B003052D3 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E98A3922A9CA57B003052D3 /* TabBarController.swift */; };
@@ -46,6 +47,7 @@
 		4E6138C32A9F9FBA003A2B37 /* CircleProgressBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleProgressBar.swift; sourceTree = "<group>"; };
 		4E6138C52A9F9FDE003A2B37 /* HomeFeedCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeFeedCell.swift; sourceTree = "<group>"; };
 		4E6138C82A9FA164003A2B37 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		4E7A15032AA0A9C8005FCD9C /* ProgressListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressListCell.swift; sourceTree = "<group>"; };
 		4E98A38B2A9CA57B003052D3 /* DiaryApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DiaryApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E98A38E2A9CA57B003052D3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4E98A3902A9CA57B003052D3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -87,6 +89,7 @@
 				4E6138BE2A9F9E8B003A2B37 /* DiaryProgressCell.swift */,
 				4E6138C52A9F9FDE003A2B37 /* HomeFeedCell.swift */,
 				4E6138BF2A9F9E8B003A2B37 /* HomeFeedCell.swift */,
+				4E7A15032AA0A9C8005FCD9C /* ProgressListCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -258,6 +261,7 @@
 				4E98A3BA2A9CAD60003052D3 /* Weather.swift in Sources */,
 				4E6138C22A9F9E8B003A2B37 /* HomeFeedCell.swift in Sources */,
 				4E98A3B82A9CAD27003052D3 /* User.swift in Sources */,
+				4E7A15042AA0A9C8005FCD9C /* ProgressListCell.swift in Sources */,
 				4E6138C12A9F9E8B003A2B37 /* DiaryProgressCell.swift in Sources */,
 				4E98A3B62A9CAA16003052D3 /* ProfileViewController.swift in Sources */,
 				4E15508B2A9E0DF500C8A500 /* CustomLabel.swift in Sources */,
