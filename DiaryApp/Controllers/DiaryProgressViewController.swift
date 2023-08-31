@@ -11,15 +11,6 @@ import UIKit
 class DiaryProgressViewController: UIViewController {
     private let collectionView = CustomCollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
 
-//    private let collectionViewFlowLayout: UICollectionViewFlowLayout = {
-//        let layout = UICollectionViewFlowLayout()
-//        layout.scrollDirection = .vertical
-//        layout.itemSize = Const.itemSize
-//        layout.minimumLineSpacing = Const.itemSpacing
-//        layout.minimumInteritemSpacing = 0
-//        return layout
-//    }()
-
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
@@ -53,7 +44,6 @@ class DiaryProgressViewController: UIViewController {
         if let flowlayout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
             flowlayout.estimatedItemSize = .zero
         }
-//        collectionView.collectionViewLayout = collectionViewFlowLayout
     }
 }
 
@@ -68,6 +58,13 @@ extension DiaryProgressViewController: UICollectionViewDataSource {
         cell.circularProgressBarView.createCircularPath(0.3)
         cell.percentLabel.text = "\(30)%"
         return cell
+    }
+}
+
+extension DiaryProgressViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let vc = ProgressListViewController()
+        navigationController?.pushViewController(vc, animated: true)
     }
 }
 
