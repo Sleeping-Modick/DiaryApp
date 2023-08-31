@@ -5,8 +5,8 @@
 //  Created by (^ㅗ^)7 iMac on 2023/08/28.
 //
 
-import UIKit
 import SnapKit
+import UIKit
 
 class ProgressListViewController: UIViewController {
     private let collectionView = CustomCollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
@@ -31,7 +31,7 @@ class ProgressListViewController: UIViewController {
         collectionView.register(ProgressListCell.self, forCellWithReuseIdentifier: ProgressListCell.identifier)
         collectionView.dataSource = self
         collectionView.delegate = self
-        
+
         collectionView.isScrollEnabled = true
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.showsVerticalScrollIndicator = true
@@ -62,6 +62,10 @@ extension ProgressListViewController: UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProgressListCell.identifier, for: indexPath) as? ProgressListCell else { return UICollectionViewCell() }
+        cell.imageView.image = UIImage(systemName: "bell")
+        cell.weatherImageView.image = UIImage(systemName: "sun.max")
+        cell.descriptionLabel.text = "오늘 하루 운동을 했는데 어쩌구 저쩌구 닭가슴살을 먹었는데 어쩌구 저쩌구 헬스장을 다녀왔는데 어쩌구 저꺼구"
+
         cell.backgroundColor = .systemRed
         cell.layer.cornerRadius = 20
         return cell
