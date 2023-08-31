@@ -29,12 +29,12 @@
 		4E98A3AC2A9CA70B003052D3 /* DiaryListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E98A3AB2A9CA70B003052D3 /* DiaryListViewController.swift */; };
 		4E98A3AE2A9CA748003052D3 /* DetailDiaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E98A3AD2A9CA748003052D3 /* DetailDiaryViewController.swift */; };
 		4E98A3B02A9CA762003052D3 /* DiaryProgressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E98A3AF2A9CA762003052D3 /* DiaryProgressViewController.swift */; };
-		4E98A3B22A9CA781003052D3 /* DiaryCalenderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E98A3B12A9CA781003052D3 /* DiaryCalenderViewController.swift */; };
 		4E98A3B62A9CAA16003052D3 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E98A3B52A9CAA16003052D3 /* ProfileViewController.swift */; };
 		4E98A3B82A9CAD27003052D3 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E98A3B72A9CAD27003052D3 /* User.swift */; };
 		4E98A3BA2A9CAD60003052D3 /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E98A3B92A9CAD60003052D3 /* Weather.swift */; };
 		4E98A3BD2A9CB918003052D3 /* CustomCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E98A3BC2A9CB918003052D3 /* CustomCollectionView.swift */; };
 		4E98A3C12A9CCFB8003052D3 /* CustomImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E98A3C02A9CCFB8003052D3 /* CustomImageView.swift */; };
+		FF0F824A2AA0D01C005CFB57 /* DiaryCalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0F82492AA0D01C005CFB57 /* DiaryCalendarViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -61,12 +61,12 @@
 		4E98A3AB2A9CA70B003052D3 /* DiaryListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryListViewController.swift; sourceTree = "<group>"; };
 		4E98A3AD2A9CA748003052D3 /* DetailDiaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailDiaryViewController.swift; sourceTree = "<group>"; };
 		4E98A3AF2A9CA762003052D3 /* DiaryProgressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryProgressViewController.swift; sourceTree = "<group>"; };
-		4E98A3B12A9CA781003052D3 /* DiaryCalenderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryCalenderViewController.swift; sourceTree = "<group>"; };
 		4E98A3B52A9CAA16003052D3 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		4E98A3B72A9CAD27003052D3 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		4E98A3B92A9CAD60003052D3 /* Weather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
 		4E98A3BC2A9CB918003052D3 /* CustomCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCollectionView.swift; sourceTree = "<group>"; };
 		4E98A3C02A9CCFB8003052D3 /* CustomImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomImageView.swift; sourceTree = "<group>"; };
+		FF0F82492AA0D01C005CFB57 /* DiaryCalendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiaryCalendarViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,11 +129,11 @@
 				4E98A3A22A9CA634003052D3 /* HomeViewController.swift */,
 				4E98A3A52A9CA6A6003052D3 /* NewDiaryViewController.swift */,
 				4E98A3A72A9CA6B6003052D3 /* EditDiaryViewController.swift */,
+				FF0F82492AA0D01C005CFB57 /* DiaryCalendarViewController.swift */,
 				4E98A3A92A9CA6F6003052D3 /* ProgressListViewController.swift */,
 				4E98A3AB2A9CA70B003052D3 /* DiaryListViewController.swift */,
 				4E98A3AD2A9CA748003052D3 /* DetailDiaryViewController.swift */,
 				4E98A3AF2A9CA762003052D3 /* DiaryProgressViewController.swift */,
-				4E98A3B12A9CA781003052D3 /* DiaryCalenderViewController.swift */,
 				4E98A3B52A9CAA16003052D3 /* ProfileViewController.swift */,
 			);
 			path = Controllers;
@@ -254,7 +254,6 @@
 				4E98A38F2A9CA57B003052D3 /* AppDelegate.swift in Sources */,
 				4E98A3912A9CA57B003052D3 /* SceneDelegate.swift in Sources */,
 				4E98A3A32A9CA634003052D3 /* HomeViewController.swift in Sources */,
-				4E98A3B22A9CA781003052D3 /* DiaryCalenderViewController.swift in Sources */,
 				4E98A3A82A9CA6B6003052D3 /* EditDiaryViewController.swift in Sources */,
 				4E1550842A9E049100C8A500 /* DiaryListCell.swift in Sources */,
 				4E6138C02A9F9E8B003A2B37 /* DiaryListThumbnailCell.swift in Sources */,
@@ -272,6 +271,7 @@
 				4E6138C42A9F9FBA003A2B37 /* CircleProgressBar.swift in Sources */,
 				4E98A3A62A9CA6A6003052D3 /* NewDiaryViewController.swift in Sources */,
 				4E98A3C12A9CCFB8003052D3 /* CustomImageView.swift in Sources */,
+				FF0F824A2AA0D01C005CFB57 /* DiaryCalendarViewController.swift in Sources */,
 				4E98A3AA2A9CA6F6003052D3 /* ProgressListViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
