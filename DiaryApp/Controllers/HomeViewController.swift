@@ -5,6 +5,7 @@
 //  Created by (^ㅗ^)7 iMac on 2023/08/28.
 //
 
+import SnapKit
 import UIKit
 
 enum Const {
@@ -62,12 +63,10 @@ class HomeViewController: UIViewController {
     private func configureLayout() {
         view.addSubview(collectionView)
 
-        NSLayoutConstraint.activate([
-            collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20),
-        ])
+        collectionView.snp.makeConstraints { make in
+            make.top.leading.trailing.equalTo(view.safeAreaLayoutGuide)
+            make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-20)
+        }
     }
 
     private func addSearchBar() {

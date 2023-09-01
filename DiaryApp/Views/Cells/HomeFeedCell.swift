@@ -5,6 +5,7 @@
 //  Created by (^ㅗ^)7 iMac on 2023/08/28.
 //
 
+import SnapKit
 import UIKit
 
 final class HomeFeedCell: UICollectionViewCell {
@@ -29,17 +30,13 @@ final class HomeFeedCell: UICollectionViewCell {
         self.weatherImage.layer.cornerRadius = CGFloat(self.sizeWidth / 2)
 
         self.myView.addSubview(self.weatherImage)
+        self.myView.snp.makeConstraints { make in
+            make.top.bottom.leading.trailing.equalTo(contentView)
+        }
 
-        NSLayoutConstraint.activate([
-            self.myView.leftAnchor.constraint(equalTo: self.contentView.leftAnchor),
-            self.myView.rightAnchor.constraint(equalTo: self.contentView.rightAnchor),
-            self.myView.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor),
-            self.myView.topAnchor.constraint(equalTo: self.contentView.topAnchor),
-
-            self.weatherImage.trailingAnchor.constraint(equalTo: self.myView.trailingAnchor, constant: -30),
-            self.weatherImage.bottomAnchor.constraint(equalTo: self.myView.bottomAnchor, constant: -30),
-            self.weatherImage.heightAnchor.constraint(equalToConstant: self.sizeWidth),
-            self.weatherImage.widthAnchor.constraint(equalToConstant: self.sizeWidth),
-        ])
+        self.weatherImage.snp.makeConstraints { make in
+            make.trailing.bottom.equalTo(self.myView).offset(-30)
+            make.height.width.equalTo(self.sizeWidth)
+        }
     }
 }
