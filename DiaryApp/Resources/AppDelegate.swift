@@ -5,12 +5,13 @@
 //  Created by (^ㅗ^)7 iMac on 2023/08/28.
 //
 
+import FirebaseCore
 import UIKit
-
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        FirebaseApp.configure()
         return true
     }
 
