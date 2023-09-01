@@ -8,7 +8,9 @@
 import UIKit
 import SnapKit
 
-class ProfileViewController: UIViewController {
+class ProfileViewController: UIViewController, UINavigationControllerDelegate {
+    
+    let photo = UIImagePickerController()
     
     var profileImg: UIImageView = {
         var view = UIImageView()
@@ -125,6 +127,8 @@ class ProfileViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
         
+        self.photo.delegate = self
+        
         setUI()
     }
     
@@ -135,17 +139,22 @@ class ProfileViewController: UIViewController {
         setUserNum()
         setStackView()
         setUserMail()
+        setEditBtn()
     }
     
     func setProfileImage() {
         view.addSubview(profileImg)
         profileImg.snp.makeConstraints{
-//            $0.top.equalToSuperview().inset(-20)
+            //            $0.top.equalToSuperview().inset(-20)
             $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).inset(-20)
             $0.centerX.equalToSuperview()
             $0.width.equalTo(150)
             $0.height.equalTo(150)
         }
+        
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageViewTapped(_:)))
+        profileImg.isUserInteractionEnabled = true
+        profileImg.addGestureRecognizer(tapGestureRecognizer)
     }
     
     func setLineSpacer() {
@@ -270,5 +279,63 @@ class ProfileViewController: UIViewController {
         settingBlank.snp.makeConstraints{
             $0.height.equalTo(40)
         }
+    }
+    
+    func setEditBtn() {
+        editUserName.addTarget(self, action: #selector(clickedEditName), for: .touchUpInside)
+        editUserNum.addTarget(self, action: #selector(clickedEditNum), for: .touchUpInside)
+        editUserMail.addTarget(self, action: #selector(clickedEditMail), for: .touchUpInside)
+    }
+    
+    func editAlert(_ setTitle: String, _ hint: String) {
+        let alert = UIAlertController(title: "수정", message: setTitle, preferredStyle: .alert)
+        let sucess = UIAlertAction(title: "완료", style: .default){ ok in
+        }
+        let cancel = UIAlertAction(title: "취소", style: .destructive){ cancel in
+        }
+        alert.addTextField { textField in
+            textField.placeholder = hint
+        }
+        alert.addAction(sucess)
+        alert.addAction(cancel)
+        present(alert, animated: true)
+    }
+    
+    func selectImage(){
+        DispatchQueue.main.async {
+            self.photo.sourceType = .photoLibrary // 앨범 지정 실시
+            self.photo.allowsEditing = true // 편집을 허용하지 않음
+            self.present(self.photo, animated: false, completion: nil)
+        }
+    }
+    
+    @objc func imageViewTapped(_ sender: AnyObject) {
+        selectImage()
+    }
+    
+    @objc func clickedEditName() {
+        editAlert(userNameLabel.text!, userName.text!)
+    }
+    
+    @objc func clickedEditNum() {
+        editAlert(userNumLabel.text!, userNum.text!)
+    }
+    
+    @objc func clickedEditMail() {
+        editAlert(userMailLabel.text!, userMail.text!)
+    }
+}
+
+extension ProfileViewController: UIImagePickerControllerDelegate {
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
+        if let img = info[UIImagePickerController.InfoKey.originalImage]{
+            self.profileImg.image = img as? UIImage
+        }
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        self.dismiss(animated: true, completion: nil)
     }
 }
