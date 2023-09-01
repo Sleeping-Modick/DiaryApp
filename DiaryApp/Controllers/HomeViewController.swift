@@ -11,11 +11,11 @@ import UIKit
 enum Const {
     static let itemSize = CGSize(width: 300, height: 550)
     static let itemSpacing = 46.0
-
+    
     static var insetX: CGFloat {
         (UIScreen.main.bounds.width - Self.itemSize.width) / 2.0
     }
-
+    
     static var collectionViewContentInset: UIEdgeInsets {
         UIEdgeInsets(top: 0, left: Self.insetX, bottom: 0, right: Self.insetX)
     }
@@ -23,7 +23,7 @@ enum Const {
 
 class HomeViewController: UIViewController {
     private let collectionView = CustomCollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
@@ -31,7 +31,7 @@ class HomeViewController: UIViewController {
         configureLayout()
         addSearchBar()
     }
-
+    
     private let collectionViewFlowLayout: UICollectionViewFlowLayout = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
@@ -40,12 +40,12 @@ class HomeViewController: UIViewController {
         layout.minimumInteritemSpacing = 0
         return layout
     }()
-
+    
     private func configureCollectionView() {
         collectionView.register(HomeFeedCell.self, forCellWithReuseIdentifier: HomeFeedCell.identifier)
         collectionView.delegate = self
         collectionView.dataSource = self
-
+        
         collectionView.isScrollEnabled = true
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.showsVerticalScrollIndicator = true
@@ -56,10 +56,10 @@ class HomeViewController: UIViewController {
         collectionView.contentInsetAdjustmentBehavior = .never
         collectionView.contentInset = Const.collectionViewContentInset
         collectionView.decelerationRate = .fast
-
+        
         collectionView.collectionViewLayout = collectionViewFlowLayout
     }
-
+    
     private func configureLayout() {
         view.addSubview(collectionView)
 
@@ -68,7 +68,7 @@ class HomeViewController: UIViewController {
             make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-20)
         }
     }
-
+    
     private func addSearchBar() {
         let searchController = UISearchController(searchResultsController: nil)
         searchController.hidesNavigationBarDuringPresentation = false
@@ -82,7 +82,7 @@ extension HomeViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 3
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeFeedCell.identifier, for: indexPath) as? HomeFeedCell else { return UICollectionViewCell() }
         cell.backgroundColor = .systemOrange
