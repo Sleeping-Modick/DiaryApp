@@ -287,9 +287,10 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate {
         editUserMail.addTarget(self, action: #selector(clickedEditMail), for: .touchUpInside)
     }
     
-    func editAlert(_ setTitle: String, _ hint: String) {
+    func editAlert(_ setTitle: String, _ hint: String, _ changedTextField: UILabel) {
         let alert = UIAlertController(title: "수정", message: setTitle, preferredStyle: .alert)
         let sucess = UIAlertAction(title: "완료", style: .default){ ok in
+            changedTextField.text = alert.textFields?.first?.text
         }
         let cancel = UIAlertAction(title: "취소", style: .destructive){ cancel in
         }
@@ -314,15 +315,15 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate {
     }
     
     @objc func clickedEditName() {
-        editAlert(userNameLabel.text!, userName.text!)
+        editAlert(userNameLabel.text!, userName.text!, userName)
     }
     
     @objc func clickedEditNum() {
-        editAlert(userNumLabel.text!, userNum.text!)
+        editAlert(userNumLabel.text!, userNum.text!, userNum)
     }
     
     @objc func clickedEditMail() {
-        editAlert(userMailLabel.text!, userMail.text!)
+        editAlert(userMailLabel.text!, userMail.text!, userMail)
     }
 }
 
