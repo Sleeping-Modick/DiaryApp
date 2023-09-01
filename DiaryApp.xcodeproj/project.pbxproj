@@ -48,6 +48,8 @@
 		4ED3122E2AA46BA700677EE0 /* WeatherManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED3122D2AA46BA700677EE0 /* WeatherManager.swift */; };
 		4ED312302AA48BFB00677EE0 /* WeatherResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED3122F2AA48BFB00677EE0 /* WeatherResponse.swift */; };
 		FF0F824A2AA0D01C005CFB57 /* DiaryCalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0F82492AA0D01C005CFB57 /* DiaryCalendarViewController.swift */; };
+		FF0F82582AA218A3005CFB57 /* Network in Resources */ = {isa = PBXBuildFile; fileRef = FF0F82572AA218A3005CFB57 /* Network */; };
+		FF0F825A2AA218AC005CFB57 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0F82592AA218AC005CFB57 /* Post.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -86,6 +88,8 @@
 		4ED3122D2AA46BA700677EE0 /* WeatherManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherManager.swift; sourceTree = "<group>"; };
 		4ED3122F2AA48BFB00677EE0 /* WeatherResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherResponse.swift; sourceTree = "<group>"; };
 		FF0F82492AA0D01C005CFB57 /* DiaryCalendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiaryCalendarViewController.swift; sourceTree = "<group>"; };
+		FF0F82572AA218A3005CFB57 /* Network */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Network; sourceTree = "<group>"; };
+		FF0F82592AA218AC005CFB57 /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,6 +152,7 @@
 		4E98A38D2A9CA57B003052D3 /* DiaryApp */ = {
 			isa = PBXGroup;
 			children = (
+				FF0F82572AA218A3005CFB57 /* Network */,
 				4E98A3BB2A9CAD89003052D3 /* Resources */,
 				4E98A3B32A9CA795003052D3 /* Models */,
 				4E98A3B42A9CA7AD003052D3 /* Views */,
@@ -182,6 +187,7 @@
 			isa = PBXGroup;
 			children = (
 				4E97E6C62AA37FDC00DD4C1F /* Post.swift */,
+				FF0F82592AA218AC005CFB57 /* Post.swift */,
 				4E98A3B72A9CAD27003052D3 /* User.swift */,
 				4E98A3B92A9CAD60003052D3 /* Weather.swift */,
 			);
@@ -296,6 +302,7 @@
 			files = (
 				4E1112492AA45E7A00D4E550 /* weatherAPI.plist in Resources */,
 				4E98A3982A9CA57E003052D3 /* Assets.xcassets in Resources */,
+				FF0F82582AA218A3005CFB57 /* Network in Resources */,
 				4E6138C92A9FA164003A2B37 /* LaunchScreen.storyboard in Resources */,
 				4EA808262AA1D46800A4D465 /* GoogleService-Info.plist in Resources */,
 			);
@@ -329,6 +336,7 @@
 				4E97E6CA2AA390A600DD4C1F /* FirestoreManager.swift in Sources */,
 				4E1550892A9E0C6500C8A500 /* CustomStackView.swift in Sources */,
 				4E97E6C72AA37FDD00DD4C1F /* Post.swift in Sources */,
+				FF0F825A2AA218AC005CFB57 /* Post.swift in Sources */,
 				4E98A3AE2A9CA748003052D3 /* DetailDiaryViewController.swift in Sources */,
 				4E98A3AC2A9CA70B003052D3 /* DiaryListViewController.swift in Sources */,
 				4E98A3B02A9CA762003052D3 /* DiaryProgressViewController.swift in Sources */,
