@@ -34,6 +34,10 @@
 		4E98A3BA2A9CAD60003052D3 /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E98A3B92A9CAD60003052D3 /* Weather.swift */; };
 		4E98A3BD2A9CB918003052D3 /* CustomCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E98A3BC2A9CB918003052D3 /* CustomCollectionView.swift */; };
 		4E98A3C12A9CCFB8003052D3 /* CustomImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E98A3C02A9CCFB8003052D3 /* CustomImageView.swift */; };
+		4EA8081E2AA1D41100A4D465 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 4EA8081D2AA1D41100A4D465 /* FirebaseAuth */; };
+		4EA808202AA1D41100A4D465 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = 4EA8081F2AA1D41100A4D465 /* FirebaseDatabase */; };
+		4EA808222AA1D41100A4D465 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 4EA808212AA1D41100A4D465 /* FirebaseFirestore */; };
+		4EA808242AA1D41100A4D465 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 4EA808232AA1D41100A4D465 /* FirebaseStorage */; };
 		FF0F824A2AA0D01C005CFB57 /* DiaryCalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0F82492AA0D01C005CFB57 /* DiaryCalendarViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -74,7 +78,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4EA808202AA1D41100A4D465 /* FirebaseDatabase in Frameworks */,
+				4EA808222AA1D41100A4D465 /* FirebaseFirestore in Frameworks */,
 				4E6138B02A9EEF50003A2B37 /* SnapKit in Frameworks */,
+				4EA808242AA1D41100A4D465 /* FirebaseStorage in Frameworks */,
+				4EA8081E2AA1D41100A4D465 /* FirebaseAuth in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -190,6 +198,10 @@
 			name = DiaryApp;
 			packageProductDependencies = (
 				4E6138AF2A9EEF50003A2B37 /* SnapKit */,
+				4EA8081D2AA1D41100A4D465 /* FirebaseAuth */,
+				4EA8081F2AA1D41100A4D465 /* FirebaseDatabase */,
+				4EA808212AA1D41100A4D465 /* FirebaseFirestore */,
+				4EA808232AA1D41100A4D465 /* FirebaseStorage */,
 			);
 			productName = DiaryApp;
 			productReference = 4E98A38B2A9CA57B003052D3 /* DiaryApp.app */;
@@ -221,6 +233,7 @@
 			mainGroup = 4E98A3822A9CA57B003052D3;
 			packageReferences = (
 				4E6138AE2A9EEF50003A2B37 /* XCRemoteSwiftPackageReference "SnapKit" */,
+				4EA8081C2AA1D41100A4D465 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			productRefGroup = 4E98A38C2A9CA57B003052D3 /* Products */;
 			projectDirPath = "";
@@ -481,6 +494,14 @@
 				minimumVersion = 5.0.0;
 			};
 		};
+		4EA8081C2AA1D41100A4D465 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -488,6 +509,26 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 4E6138AE2A9EEF50003A2B37 /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
+		};
+		4EA8081D2AA1D41100A4D465 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4EA8081C2AA1D41100A4D465 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		4EA8081F2AA1D41100A4D465 /* FirebaseDatabase */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4EA8081C2AA1D41100A4D465 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseDatabase;
+		};
+		4EA808212AA1D41100A4D465 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4EA8081C2AA1D41100A4D465 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+		4EA808232AA1D41100A4D465 /* FirebaseStorage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4EA8081C2AA1D41100A4D465 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseStorage;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
