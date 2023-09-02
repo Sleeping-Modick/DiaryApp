@@ -26,6 +26,9 @@ final class HomeFeedCell: UICollectionViewCell {
 
         self.contentView.addSubview(self.myView)
 
+        self.myView.layer.masksToBounds = true
+        self.myView.layer.cornerRadius = 20
+
         self.weatherImage.backgroundColor = .systemBlue
         self.weatherImage.layer.cornerRadius = CGFloat(self.sizeWidth / 2)
 

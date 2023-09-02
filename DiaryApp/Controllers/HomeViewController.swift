@@ -25,7 +25,7 @@ enum Const {
 class HomeViewController: UIViewController {
     private let collectionView = CustomCollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
     
-    var postList: [[Post]] = []
+    var postList = [Post]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,6 +36,19 @@ class HomeViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        firebaseOperation()
+    }
+    
+    private let collectionViewFlowLayout: UICollectionViewFlowLayout = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        layout.itemSize = Const.itemSize
+        layout.minimumLineSpacing = Const.itemSpacing
+        layout.minimumInteritemSpacing = 0
+        return layout
+    }()
+    
+    private func firebaseOperation() {
         FirestoreService().getPostData { post in
             post?.forEach { data in
                 let content = data.content
@@ -47,20 +60,14 @@ class HomeViewController: UIViewController {
                 let weatherIcon = data.weatherIcon
                 
                 let item = Post(content: content, goal: goal, image: image, tag: tag, temperature: temperature, weather: weather, weatherIcon: weatherIcon)
-                self.postList.append([item])
+                self.postList.append(item)
+                
+                DispatchQueue.main.async {
+                    self.collectionView.reloadData()
+                }
             }
-            print("### \(self.postList[0][0].image)")
         }
     }
-    
-    private let collectionViewFlowLayout: UICollectionViewFlowLayout = {
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .horizontal
-        layout.itemSize = Const.itemSize
-        layout.minimumLineSpacing = Const.itemSpacing
-        layout.minimumInteritemSpacing = 0
-        return layout
-    }()
     
     private func configureCollectionView() {
         collectionView.register(HomeFeedCell.self, forCellWithReuseIdentifier: HomeFeedCell.identifier)
@@ -101,14 +108,14 @@ class HomeViewController: UIViewController {
 
 extension HomeViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 1
+        return postList.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeFeedCell.identifier, for: indexPath) as? HomeFeedCell else { return UICollectionViewCell() }
         cell.backgroundColor = .systemOrange
-        var url = URL(string: postList[0][0].image)
-        cell.myView.kf.setImage(with: url)
+        let item = postList[indexPath.row]
+        cell.myView.kf.setImage(with: URL(string: item.image ?? ""))
         cell.layer.cornerRadius = 20
         return cell
     }
