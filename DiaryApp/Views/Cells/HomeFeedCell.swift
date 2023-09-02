@@ -11,8 +11,8 @@ import UIKit
 final class HomeFeedCell: UICollectionViewCell {
     static let identifier = "HomeFeedCell"
 
-    private let myView = CustomImageView(frame: .zero)
-    private let weatherImage = CustomImageView(frame: .zero)
+    lazy var myView = CustomImageView(frame: .zero)
+    lazy var weatherImage = CustomImageView(frame: .zero)
 
     let sizeWidth = 70.0
 

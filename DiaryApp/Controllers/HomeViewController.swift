@@ -5,6 +5,7 @@
 //  Created by (^ㅗ^)7 iMac on 2023/08/28.
 //
 
+import Kingfisher
 import SnapKit
 import UIKit
 
@@ -24,12 +25,32 @@ enum Const {
 class HomeViewController: UIViewController {
     private let collectionView = CustomCollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
     
+    var postList: [[Post]] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
         configureCollectionView()
         configureLayout()
         addSearchBar()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        FirestoreService().getPostData { post in
+            post?.forEach { data in
+                let content = data.content
+                let goal = data.goal
+                let image = data.image
+                let tag = data.tag
+                let temperature = data.temperature
+                let weather = data.weather
+                let weatherIcon = data.weatherIcon
+                
+                let item = Post(content: content, goal: goal, image: image, tag: tag, temperature: temperature, weather: weather, weatherIcon: weatherIcon)
+                self.postList.append([item])
+            }
+            print("### \(self.postList[0][0].image)")
+        }
     }
     
     private let collectionViewFlowLayout: UICollectionViewFlowLayout = {
@@ -80,12 +101,14 @@ class HomeViewController: UIViewController {
 
 extension HomeViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 3
+        return 1
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeFeedCell.identifier, for: indexPath) as? HomeFeedCell else { return UICollectionViewCell() }
         cell.backgroundColor = .systemOrange
+        var url = URL(string: postList[0][0].image)
+        cell.myView.kf.setImage(with: url)
         cell.layer.cornerRadius = 20
         return cell
     }

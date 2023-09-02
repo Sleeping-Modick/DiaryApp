@@ -5,17 +5,18 @@
 //  Created by t2023-m0056 on 2023/09/01.
 //
 
-import Foundation
 import FirebaseFirestore
+import Foundation
 
 final class FirestoreService {
-    let db = Firestore.firestore()
-    
+//    let db = Firestore.firestore()
+    static let db = Firestore.firestore()
+
     func getPostData(completion: @escaping ([Post]?) -> Void) {
-        var names: [[String:Any]] = [[:]]
+        var names: [[String: Any]] = [[:]]
         var post: [Post]?
-        
-        db.collection("Post").getDocuments { (querySnapshot, error) in
+
+        FirestoreService.db.collection("Post").getDocuments { querySnapshot, error in
             if let error = error {
                 print("Error getting documents: \(error)")
                 completion(post) // 호출하는 쪽에 빈 배열 전달
@@ -29,10 +30,10 @@ final class FirestoreService {
             completion(post) // 성공 시 이름 배열 전달
         }
     }
-    
-    func addPostDocument(content: String, goal: String, image: String, tag: Array<String>, temperature: String, weather: String, weatherIcon: String, completion: @escaping (String) -> Void) {
+
+    func addPostDocument(content: String, goal: String, image: String, tag: [String], temperature: String, weather: String, weatherIcon: String, completion: @escaping (String) -> Void) {
         // Add a new document with a generated ID
-        db.collection("Info").document(goal).setData([
+        FirestoreService.db.collection("Info").document(goal).setData([
             "content": content,
             "goal": goal,
             "image": image,
@@ -42,26 +43,25 @@ final class FirestoreService {
             "weatherIcon": weatherIcon,
         ]) { err in
             if let err = err {
-                print("Error adding document: \(err)")
+                print("### Error adding document: \(err)")
             } else {
-                completion("Post Document added")
+                completion("#### Post Document added")
+                print("### 현재 Firebase 에 저장된 데이터들 : \(FirestoreService.db.collection("Info").document(goal))")
             }
         }
     }
 }
 
 extension FirestoreService {
-    func dictionaryToObject<T:Decodable>(objectType:T.Type,dictionary:[[String:Any]]) -> [T]? {
-        
+    func dictionaryToObject<T: Decodable>(objectType: T.Type, dictionary: [[String: Any]]) -> [T]? {
         guard let dictionaries = try? JSONSerialization.data(withJSONObject: dictionary) else { return nil }
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         guard let objects = try? decoder.decode([T].self, from: dictionaries) else { return nil }
         return objects
     }
-    
-    func dicToObject<T:Decodable>(objectType:T.Type,dictionary:[String:Any]) -> T? {
-        
+
+    func dicToObject<T: Decodable>(objectType: T.Type, dictionary: [String: Any]) -> T? {
         guard let dictionaries = try? JSONSerialization.data(withJSONObject: dictionary) else { return nil }
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase

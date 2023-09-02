@@ -77,7 +77,6 @@ extension ProgressListViewController: UICollectionViewDelegateFlowLayout {
         let interItemSpacing: CGFloat = 10
         let padding: CGFloat = 10
         let width = (collectionView.bounds.width - interItemSpacing * 3 - padding * 2)
-        print("### \(width)")
         let height = width / 3
         return CGSize(width: width, height: height)
     }
