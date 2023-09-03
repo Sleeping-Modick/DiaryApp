@@ -14,11 +14,11 @@ enum Const {
     static let itemSpacing = 46.0
     
     static var insetX: CGFloat {
-        (UIScreen.main.bounds.width - Self.itemSize.width) / 2.0
+        (UIScreen.main.bounds.width - itemSize.width) / 2.0
     }
     
     static var collectionViewContentInset: UIEdgeInsets {
-        UIEdgeInsets(top: 0, left: Self.insetX, bottom: 0, right: Self.insetX)
+        UIEdgeInsets(top: 0, left: insetX, bottom: 0, right: insetX)
     }
 }
 
@@ -112,10 +112,12 @@ extension HomeViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let item = postList[indexPath.row]
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeFeedCell.identifier, for: indexPath) as? HomeFeedCell else { return UICollectionViewCell() }
         cell.backgroundColor = .systemOrange
-        let item = postList[indexPath.row]
-        cell.myView.kf.setImage(with: URL(string: item.image ?? ""))
+        if let image = item.image {
+            cell.myView.kf.setImage(with: URL(string: image))
+        }
         cell.layer.cornerRadius = 20
         return cell
     }
