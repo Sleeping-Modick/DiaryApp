@@ -196,7 +196,9 @@ class NewDiaryViewController: UIViewController {
                 // 날씨 정보를 받아와 UI에 표시
                 DispatchQueue.main.async {
                     self.weatherDescriptionLabel.text = weatherData.description
-                    self.temperatureLabel.text = "\(weatherData.temperature) °C"
+                    let celsiusTemp = round(weatherData.temperature - 273.15)
+
+                    self.temperatureLabel.text = "\(celsiusTemp) °C"
                     
                     // 아이콘 이미지를 표시
                     if let iconUrl = URL(string: weatherData.iconUrl) {
