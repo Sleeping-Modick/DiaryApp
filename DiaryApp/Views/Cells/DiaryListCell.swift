@@ -50,12 +50,10 @@ class DiaryListCell: UICollectionViewCell {
 
     private func setupUI() {
         stackView.axis = .vertical
-        stackView.backgroundColor = .systemOrange
         stackView.distribution = .fillProportionally
         stackView.spacing = 0
 
         labelStackView.axis = .horizontal
-        labelStackView.backgroundColor = .systemBlue
         labelStackView.distribution = .fillProportionally
 
         diaryTitleLabel.font = .systemFont(ofSize: 20, weight: .bold)
@@ -67,7 +65,8 @@ class DiaryListCell: UICollectionViewCell {
         endDayLabel.adjustsFontSizeToFitWidth = true
         endDayLabel.textAlignment = .center
 
-        collectionView.backgroundColor = .systemRed
+        collectionView.layer.borderColor = UIColor.black.cgColor
+        collectionView.layer.borderWidth = 1
     }
 
     private func setupLayout() {
@@ -76,8 +75,8 @@ class DiaryListCell: UICollectionViewCell {
         collectionView.snp.makeConstraints { make in
             make.top.equalTo(contentView.safeAreaLayoutGuide).inset(12)
             make.bottom.equalTo(contentView.safeAreaLayoutGuide).inset(10)
-            make.leading.equalTo(contentView.safeAreaLayoutGuide).inset(25)
-            make.trailing.equalTo(contentView.safeAreaLayoutGuide).inset(210)
+            make.leading.equalTo(contentView.safeAreaLayoutGuide).inset(12)
+            make.trailing.equalTo(contentView.safeAreaLayoutGuide).inset(225)
             make.width.height.equalTo(50)
         }
 

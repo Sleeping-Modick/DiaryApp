@@ -5,15 +5,15 @@
 //  Created by t2023-m0056 on 2023/08/31.
 //
 
-import UIKit
 import SnapKit
+import UIKit
 
 @available(iOS 16.0, *)
 class DiaryCalendarViewController: UIViewController {
-    
     // MARK: - BottomSheet
+
     // 바텀 시트 높이
-    var bottomHeight: CGFloat = 620
+    var bottomHeight: CGFloat = 650
     
     // bottomSheet가 view의 상단에서 떨어진 거리
     private var bottomSheetViewTopConstraint: NSLayoutConstraint!
@@ -21,7 +21,7 @@ class DiaryCalendarViewController: UIViewController {
     // 기존 화면을 흐려지게 만들기 위한 뷰
     private let dimmedBackView: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
+        view.backgroundColor = .clear
         return view
     }()
     
@@ -52,8 +52,8 @@ class DiaryCalendarViewController: UIViewController {
     var purposeTextField: UITextField = {
         var textField = UITextField()
         let centeredParagraphStyle = NSMutableParagraphStyle()
-            centeredParagraphStyle.alignment = .center
-        textField.attributedPlaceholder = NSAttributedString(string: "목표", attributes:[NSAttributedString.Key.foregroundColor : UIColor.black, NSAttributedString.Key.paragraphStyle: centeredParagraphStyle])
+        centeredParagraphStyle.alignment = .center
+        textField.attributedPlaceholder = NSAttributedString(string: "목표", attributes: [NSAttributedString.Key.foregroundColor: UIColor.black, NSAttributedString.Key.paragraphStyle: centeredParagraphStyle])
         textField.layer.cornerRadius = 10
         textField.layer.borderWidth = 1
         return textField
@@ -63,7 +63,7 @@ class DiaryCalendarViewController: UIViewController {
     
     var checkedEverDay = false, checkedThreeDays = false, checkedFiveDays = false, checkedEverWeek = false
     
-    var sundayBtn = UIButton() ,mondayBtn = UIButton(), tuesdayBtn = UIButton(), wednesdayBtn = UIButton(), thursdayBtn = UIButton(), fridayBtn = UIButton(), saturdayBtn = UIButton()
+    var sundayBtn = UIButton(), mondayBtn = UIButton(), tuesdayBtn = UIButton(), wednesdayBtn = UIButton(), thursdayBtn = UIButton(), fridayBtn = UIButton(), saturdayBtn = UIButton()
     
     var checkedSunday = false, checkedMonday = false, checkedTuesday = false, checkedWednesday = false, checkedThursday = false, checkedFridaay = false, checkedSaturday = false
     
@@ -91,7 +91,7 @@ class DiaryCalendarViewController: UIViewController {
         var view = UIStackView()
         view.axis = .vertical
         view.spacing = 10
-        view.snp.makeConstraints{
+        view.snp.makeConstraints {
             $0.height.equalTo(120)
         }
         return view
@@ -101,24 +101,25 @@ class DiaryCalendarViewController: UIViewController {
         var view = UIStackView(arrangedSubviews: [self.everyDayBtn, self.threeDaysBtn, self.fiveDaysBtn, self.everyWeekBtn])
         view.axis = .horizontal
         view.distribution = .equalSpacing
-        view.snp.makeConstraints{
+        view.snp.makeConstraints {
             $0.height.equalTo(50)
         }
         return view
     }()
     
     lazy var dayStackView = {
-        let view = UIStackView(arrangedSubviews: [self.sundayBtn,self.mondayBtn,self.tuesdayBtn,self.wednesdayBtn,self.thursdayBtn,self.fridayBtn,self.saturdayBtn])
+        let view = UIStackView(arrangedSubviews: [self.sundayBtn, self.mondayBtn, self.tuesdayBtn, self.wednesdayBtn, self.thursdayBtn, self.fridayBtn, self.saturdayBtn])
         view.axis = .horizontal
         view.distribution = .equalSpacing
         view.isHidden = true
-        view.snp.makeConstraints{
+        view.snp.makeConstraints {
             $0.height.equalTo(40)
         }
         return view
     }()
-
+    
     // MARK: - View Life Cycle
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -136,6 +137,7 @@ class DiaryCalendarViewController: UIViewController {
     }
 
     // MARK: - @Functions
+
     func configurationView() {
         setupUI()
         setupLayout()
@@ -182,7 +184,7 @@ class DiaryCalendarViewController: UIViewController {
     
     // 레이아웃 세팅
     private func setupLayout() {
-        dimmedBackView.snp.makeConstraints{
+        dimmedBackView.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide.snp.top)
             $0.leading.equalTo(view.safeAreaLayoutGuide.snp.leading)
             $0.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailing)
@@ -192,14 +194,14 @@ class DiaryCalendarViewController: UIViewController {
         bottomSheetView.translatesAutoresizingMaskIntoConstraints = false
         let topConstant = view.safeAreaInsets.bottom + view.safeAreaLayoutGuide.layoutFrame.height
         bottomSheetViewTopConstraint = bottomSheetView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: topConstant)
-        bottomSheetView.snp.makeConstraints{
+        bottomSheetView.snp.makeConstraints {
             $0.leading.equalTo(view.safeAreaLayoutGuide.snp.leading)
             $0.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailing)
-            $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
+            $0.bottom.equalTo(view)
         }
         bottomSheetViewTopConstraint.isActive = true
         
-        dismissIndicatorView.snp.makeConstraints{
+        dismissIndicatorView.snp.makeConstraints {
             $0.width.equalTo(102)
             $0.height.equalTo(7)
             $0.top.equalTo(bottomSheetView.snp.top).inset(12)
@@ -209,7 +211,7 @@ class DiaryCalendarViewController: UIViewController {
     
     func setDateView() {
         bottomSheetView.addSubview(dateView)
-        dateView.snp.makeConstraints{
+        dateView.snp.makeConstraints {
             $0.top.equalToSuperview().inset(10)
             $0.leading.equalToSuperview().inset(10)
             $0.trailing.equalToSuperview().inset(10)
@@ -217,10 +219,10 @@ class DiaryCalendarViewController: UIViewController {
     }
     
     func reloadDateView(date: Date?) {
-            if date == nil { return }
-            let calendar = Calendar.current
-            dateView.reloadDecorations(forDateComponents: [calendar.dateComponents([.day, .month, .year], from: date!)], animated: true)
-        }
+        if date == nil { return }
+        let calendar = Calendar.current
+        dateView.reloadDecorations(forDateComponents: [calendar.dateComponents([.day, .month, .year], from: date!)], animated: true)
+    }
     
     func setPurposeTitle() {
         bottomSheetView.addSubview(purposeTextField)
@@ -244,61 +246,63 @@ class DiaryCalendarViewController: UIViewController {
     }
     
     // MARK: - IntervalBtn
+
     func setEveryDayBtn() {
-        self.setIntervalBtn("매일", everyDayBtn)
+        setIntervalBtn("매일", everyDayBtn)
         everyDayBtn.addTarget(self, action: #selector(clickedEveryDay), for: .touchUpInside)
     }
     
     func setThreeDaysBtn() {
-        self.setIntervalBtn("3일", threeDaysBtn)
+        setIntervalBtn("3일", threeDaysBtn)
         threeDaysBtn.addTarget(self, action: #selector(clickedThreeDays), for: .touchUpInside)
     }
     
     func setFiveDaysBtn() {
-        self.setIntervalBtn("5일", fiveDaysBtn)
+        setIntervalBtn("5일", fiveDaysBtn)
         fiveDaysBtn.addTarget(self, action: #selector(clickedFiveDays), for: .touchUpInside)
     }
     
     func setEveryWeekBtn() {
-        self.setIntervalBtn("매주", everyWeekBtn)
+        setIntervalBtn("매주", everyWeekBtn)
         everyWeekBtn.addTarget(self, action: #selector(clickedEveryWeek), for: .touchUpInside)
     }
     
     // MARK: - DaysBtn
+
     func setSundayBtn() {
-        self.setDayBtn("일", self.sundayBtn)
+        setDayBtn("일", sundayBtn)
         sundayBtn.layer.borderColor = UIColor.red.cgColor
         sundayBtn.setTitleColor(.red, for: .normal)
         sundayBtn.addTarget(self, action: #selector(clickedSunday), for: .touchUpInside)
     }
     
     func setMondayBtn() {
-        self.setDayBtn("월", self.mondayBtn)
+        setDayBtn("월", mondayBtn)
         mondayBtn.addTarget(self, action: #selector(clickedMonday), for: .touchUpInside)
     }
     
     func setTuesdayBtn() {
-        self.setDayBtn("화", self.tuesdayBtn)
+        setDayBtn("화", tuesdayBtn)
         tuesdayBtn.addTarget(self, action: #selector(clickedTuesday), for: .touchUpInside)
     }
     
     func setWednesdayBtn() {
-        self.setDayBtn("수", self.wednesdayBtn)
+        setDayBtn("수", wednesdayBtn)
         wednesdayBtn.addTarget(self, action: #selector(clickedWednesday), for: .touchUpInside)
     }
     
     func setThursdayBtn() {
-        self.setDayBtn("목", self.thursdayBtn)
+        setDayBtn("목", thursdayBtn)
         thursdayBtn.addTarget(self, action: #selector(clickedThursday), for: .touchUpInside)
     }
     
     func setFridayBtn() {
-        self.setDayBtn("금", self.fridayBtn)
+        setDayBtn("금", fridayBtn)
         fridayBtn.addTarget(self, action: #selector(clickedFriday), for: .touchUpInside)
     }
     
     func setSaturdayBtn() {
-        self.setDayBtn("토", self.saturdayBtn)
+        setDayBtn("토", saturdayBtn)
         saturdayBtn.layer.borderColor = UIColor.blue.cgColor
         saturdayBtn.setTitleColor(.blue, for: .normal)
         saturdayBtn.addTarget(self, action: #selector(clickedSaturday), for: .touchUpInside)
@@ -310,7 +314,7 @@ class DiaryCalendarViewController: UIViewController {
             $0.top.equalTo(totalStackView.snp.bottom).inset(-10)
             $0.leading.equalToSuperview().inset(10)
             $0.trailing.equalToSuperview().inset(10)
-            $0.bottom.equalToSuperview()
+            $0.bottom.equalToSuperview().inset(50)
             $0.height.equalTo(50)
         }
         saveBtn.addTarget(self, action: #selector(clickedSaveBtn), for: .touchUpInside)
@@ -321,7 +325,7 @@ class DiaryCalendarViewController: UIViewController {
         btn.setTitleColor(.black, for: .normal)
         btn.layer.cornerRadius = 10
         btn.layer.borderWidth = 1
-        btn.snp.makeConstraints{
+        btn.snp.makeConstraints {
             $0.width.equalTo(80)
         }
     }
@@ -331,7 +335,7 @@ class DiaryCalendarViewController: UIViewController {
         btn.setTitleColor(.black, for: .normal)
         btn.layer.cornerRadius = 10
         btn.layer.borderWidth = 1
-        btn.snp.makeConstraints{
+        btn.snp.makeConstraints {
             $0.width.equalTo(40)
         }
     }
@@ -365,6 +369,7 @@ class DiaryCalendarViewController: UIViewController {
     }
     
     // MARK: - @objc
+
     @objc func clickedEveryDay() {
         everyDayBtn.backgroundColor = checkedEverDay ? .white : .black
         everyDayBtn.setTitleColor(checkedEverDay ? .black : .white, for: .normal)
@@ -389,7 +394,7 @@ class DiaryCalendarViewController: UIViewController {
         checkedEverWeek = !checkedEverWeek
         
         dayStackView.isHidden = !dayStackView.isHidden
-        bottomHeight = (dayStackView.isHidden == false) ? 660 : 620
+        bottomHeight = (dayStackView.isHidden == false) ? 700 : 650
         showBottomSheet()
     }
     
@@ -436,7 +441,7 @@ class DiaryCalendarViewController: UIViewController {
     }
     
     @objc func clickedSaveBtn() {
-        //save
+        // save
     }
     
     // UITapGestureRecognizer 연결 함수 부분

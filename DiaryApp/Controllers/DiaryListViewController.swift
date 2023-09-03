@@ -66,8 +66,8 @@ extension DiaryListViewController: UICollectionViewDataSource {
         cell.startDayLabel.text = "2023.08.30"
         cell.endDayLabel.text = "2023.09.30"
 
-        cell.backgroundColor = .systemPink
-        cell.collectionView.backgroundColor = .systemBlue
+        cell.layer.borderWidth = 1
+        cell.layer.borderColor = UIColor.black.cgColor
         cell.collectionView.layer.cornerRadius = 10
         cell.layer.cornerRadius = 20
         return cell
@@ -86,7 +86,6 @@ extension DiaryListViewController: UICollectionViewDelegateFlowLayout {
         let interItemSpacing: CGFloat = 10
         let padding: CGFloat = 10
         let width = (collectionView.bounds.width - interItemSpacing * 3 - padding * 2)
-        print("### \(width)")
         let height = width / 3
         return CGSize(width: width, height: height)
     }
