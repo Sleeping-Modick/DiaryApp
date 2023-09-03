@@ -7,6 +7,7 @@
 
 import SnapKit
 import UIKit
+import Alamofire
 
 class NewDiaryViewController: UIViewController {
     let options = ["운동", "식단", "헬스", "크로스핏", "양배추", "닭가슴살", "닭안심살"]
@@ -17,14 +18,14 @@ class NewDiaryViewController: UIViewController {
         pickerView.dataSource = self
         return pickerView
     }()
-
+    
     lazy var pickImageButton: UIButton = {
         let button = UIButton(type: .system)
         button.setImage(UIImage(systemName: "camera"), for: .normal)
         button.addTarget(self, action: #selector(pickImage), for: .touchUpInside)
         return button
     }()
-
+    
     lazy var textView: UITextView = {
         let textView = UITextView()
         textView.text = "입력하시요"
@@ -33,37 +34,55 @@ class NewDiaryViewController: UIViewController {
         textView.layer.cornerRadius = 5.0
         return textView
     }()
-
+    
     lazy var button1: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Button 1", for: .normal)
         button.addTarget(self, action: #selector(button1Tapped), for: .touchUpInside)
         return button
     }()
-
+    
     lazy var button2: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("운동", for: .normal)
         button.addTarget(self, action: #selector(button1Tapped), for: .touchUpInside)
         return button
     }()
-
+    
     lazy var button3: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("건강", for: .normal)
         button.addTarget(self, action: #selector(button1Tapped), for: .touchUpInside)
         return button
     }()
-
+    
     lazy var button4: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("식단", for: .normal)
         button.addTarget(self, action: #selector(button1Tapped), for: .touchUpInside)
         return button
     }()
+    
+    let weatherIconImageView: UIImageView = {
+        let imageView = UIImageView()
 
+        return imageView
+    }()
+    
+    let weatherDescriptionLabel: UILabel = {
+        let label = UILabel()
+        return label
+    }()
+    
+    let temperatureLabel: UILabel = {
+        let label = UILabel()
+        return label
+    }()
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         view.backgroundColor = .white
         view.addSubview(pickImageButton)
         view.addSubview(textView)
@@ -71,6 +90,13 @@ class NewDiaryViewController: UIViewController {
         view.addSubview(button2)
         view.addSubview(button3)
         view.addSubview(button4)
+        view.addSubview(weatherIconImageView)
+        view.addSubview(weatherDescriptionLabel)
+        view.addSubview(temperatureLabel)
+        
+        fetchAndDisplayWeather()
+        
+        
         pickImageButton.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             //      make.centerY.equalToSuperview()
@@ -98,24 +124,42 @@ class NewDiaryViewController: UIViewController {
             make.top.equalTo(button1.snp.bottom).offset(20)
             make.leading.equalTo(button2.snp.leading).offset(-200)
         }
+        weatherIconImageView.snp.makeConstraints { make in
+//            make.centerX.equalToSuperview()
+            make.top.equalTo(button4.snp.bottom).offset(20)
+            make.leading.equalTo(button1)
+            make.width.height.equalTo(50)
+            
+        }
+        
+        weatherDescriptionLabel.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(button4.snp.bottom).offset(10)
+        }
+        
+        temperatureLabel.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(weatherDescriptionLabel.snp.bottom).offset(5)
+        }
     }
-
+    
     @objc func button1Tapped() {
         presentAlertWithPicker(for: button1)
     }
-
+    
     @objc func button2Tapped() {
         presentAlertWithPicker(for: button2)
     }
-
+    
     @objc func button3Tapped() {
         presentAlertWithPicker(for: button3)
     }
-
+    
     @objc func button4Tapped() {
         presentAlertWithPicker(for: button4)
     }
-
+    
+    
     func presentAlertWithPicker(for button: UIButton) {
         selectedButton = button
         let alertController = UIAlertController(title: "Select", message: nil, preferredStyle: .alert)
@@ -143,6 +187,38 @@ class NewDiaryViewController: UIViewController {
         alertController.addAction(confirmAction)
         alertController.addAction(cancelAction)
         present(alertController, animated: true, completion: nil)
+    }
+    func fetchAndDisplayWeather() {
+        let city = "Busan"
+        WeatherManager.shared.fetchWeather(for: city) { result in
+            switch result {
+            case .success(let weatherData):
+                // 날씨 정보를 받아와 UI에 표시
+                DispatchQueue.main.async {
+                    self.weatherDescriptionLabel.text = weatherData.description
+                    self.temperatureLabel.text = "\(weatherData.temperature) °C"
+                    
+                    // 아이콘 이미지를 표시
+                    if let iconUrl = URL(string: weatherData.iconUrl) {
+                        DispatchQueue.global().async {
+
+                            if let imageData = try? Data(contentsOf: iconUrl),
+                               let iconImage = UIImage(data: imageData) {
+                                DispatchQueue.main.async {
+                                    print("###이미지 다운로드 완ㄹ")
+
+                                    self.weatherIconImageView.image = iconImage
+                                }
+                            } else {
+                                print("이미지 다운로드 변환 실패 ###")
+                            }
+                        }
+                    }
+                }
+            case .failure(let error):
+                print("###날씨 정보 가져오기 실패: \(error)")
+            }
+        }
     }
 }
 

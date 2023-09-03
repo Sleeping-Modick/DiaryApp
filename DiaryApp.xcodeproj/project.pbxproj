@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		416BCE5008D8A336C839F81F /* Pods_DiaryApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6ECBBCC35FC9003BDB3F2719 /* Pods_DiaryApp.framework */; };
+		4E1112492AA45E7A00D4E550 /* weatherAPI.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4E1112482AA45E7A00D4E550 /* weatherAPI.plist */; };
 		4E1550842A9E049100C8A500 /* DiaryListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1550832A9E049100C8A500 /* DiaryListCell.swift */; };
 		4E1550892A9E0C6500C8A500 /* CustomStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1550882A9E0C6500C8A500 /* CustomStackView.swift */; };
 		4E15508B2A9E0DF500C8A500 /* CustomLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E15508A2A9E0DF500C8A500 /* CustomLabel.swift */; };
@@ -39,10 +41,14 @@
 		4EA808222AA1D41100A4D465 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 4EA808212AA1D41100A4D465 /* FirebaseFirestore */; };
 		4EA808242AA1D41100A4D465 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 4EA808232AA1D41100A4D465 /* FirebaseStorage */; };
 		4EA808262AA1D46800A4D465 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4EA808252AA1D46800A4D465 /* GoogleService-Info.plist */; };
+		4ED3122E2AA46BA700677EE0 /* WeatherManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED3122D2AA46BA700677EE0 /* WeatherManager.swift */; };
+		4ED312302AA48BFB00677EE0 /* WeatherResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED3122F2AA48BFB00677EE0 /* WeatherResponse.swift */; };
 		FF0F824A2AA0D01C005CFB57 /* DiaryCalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0F82492AA0D01C005CFB57 /* DiaryCalendarViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		29E4E142F65D379C5B088A3D /* Pods-DiaryApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DiaryApp.release.xcconfig"; path = "Target Support Files/Pods-DiaryApp/Pods-DiaryApp.release.xcconfig"; sourceTree = "<group>"; };
+		4E1112482AA45E7A00D4E550 /* weatherAPI.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = weatherAPI.plist; sourceTree = "<group>"; };
 		4E1550832A9E049100C8A500 /* DiaryListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryListCell.swift; sourceTree = "<group>"; };
 		4E1550882A9E0C6500C8A500 /* CustomStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomStackView.swift; sourceTree = "<group>"; };
 		4E15508A2A9E0DF500C8A500 /* CustomLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLabel.swift; sourceTree = "<group>"; };
@@ -72,6 +78,10 @@
 		4E98A3BC2A9CB918003052D3 /* CustomCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCollectionView.swift; sourceTree = "<group>"; };
 		4E98A3C02A9CCFB8003052D3 /* CustomImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomImageView.swift; sourceTree = "<group>"; };
 		4EA808252AA1D46800A4D465 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		4ED3122D2AA46BA700677EE0 /* WeatherManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherManager.swift; sourceTree = "<group>"; };
+		4ED3122F2AA48BFB00677EE0 /* WeatherResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherResponse.swift; sourceTree = "<group>"; };
+		6ECBBCC35FC9003BDB3F2719 /* Pods_DiaryApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DiaryApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F45C74DA7EACBE351DEA5098 /* Pods-DiaryApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DiaryApp.debug.xcconfig"; path = "Target Support Files/Pods-DiaryApp/Pods-DiaryApp.debug.xcconfig"; sourceTree = "<group>"; };
 		FF0F82492AA0D01C005CFB57 /* DiaryCalendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiaryCalendarViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -85,6 +95,7 @@
 				4E6138B02A9EEF50003A2B37 /* SnapKit in Frameworks */,
 				4EA808242AA1D41100A4D465 /* FirebaseStorage in Frameworks */,
 				4EA8081E2AA1D41100A4D465 /* FirebaseAuth in Frameworks */,
+				416BCE5008D8A336C839F81F /* Pods_DiaryApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -109,6 +120,8 @@
 			children = (
 				4E98A38D2A9CA57B003052D3 /* DiaryApp */,
 				4E98A38C2A9CA57B003052D3 /* Products */,
+				645148A477D85E4A768623AC /* Pods */,
+				C495D0DD606D22FB491EDCDE /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -144,8 +157,10 @@
 				4E98A3A92A9CA6F6003052D3 /* ProgressListViewController.swift */,
 				4E98A3AB2A9CA70B003052D3 /* DiaryListViewController.swift */,
 				4E98A3AD2A9CA748003052D3 /* DetailDiaryViewController.swift */,
+				4ED312312AA48CFA00677EE0 /* Weather */,
 				4E98A3AF2A9CA762003052D3 /* DiaryProgressViewController.swift */,
 				4E98A3B52A9CAA16003052D3 /* ProfileViewController.swift */,
+				4E1112482AA45E7A00D4E550 /* weatherAPI.plist */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -183,6 +198,32 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		4ED312312AA48CFA00677EE0 /* Weather */ = {
+			isa = PBXGroup;
+			children = (
+				4ED3122D2AA46BA700677EE0 /* WeatherManager.swift */,
+				4ED3122F2AA48BFB00677EE0 /* WeatherResponse.swift */,
+			);
+			path = Weather;
+			sourceTree = "<group>";
+		};
+		645148A477D85E4A768623AC /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F45C74DA7EACBE351DEA5098 /* Pods-DiaryApp.debug.xcconfig */,
+				29E4E142F65D379C5B088A3D /* Pods-DiaryApp.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		C495D0DD606D22FB491EDCDE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6ECBBCC35FC9003BDB3F2719 /* Pods_DiaryApp.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -190,9 +231,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4E98A39F2A9CA57E003052D3 /* Build configuration list for PBXNativeTarget "DiaryApp" */;
 			buildPhases = (
+				8DFF7EF8445834A3CB02DCFD /* [CP] Check Pods Manifest.lock */,
 				4E98A3872A9CA57B003052D3 /* Sources */,
 				4E98A3882A9CA57B003052D3 /* Frameworks */,
 				4E98A3892A9CA57B003052D3 /* Resources */,
+				FA407FDDD7445C4F63B1AD88 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -252,6 +295,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4E1112492AA45E7A00D4E550 /* weatherAPI.plist in Resources */,
 				4E98A3982A9CA57E003052D3 /* Assets.xcassets in Resources */,
 				4E6138C92A9FA164003A2B37 /* LaunchScreen.storyboard in Resources */,
 				4EA808262AA1D46800A4D465 /* GoogleService-Info.plist in Resources */,
@@ -259,6 +303,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		8DFF7EF8445834A3CB02DCFD /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-DiaryApp-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FA407FDDD7445C4F63B1AD88 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-DiaryApp/Pods-DiaryApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-DiaryApp/Pods-DiaryApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-DiaryApp/Pods-DiaryApp-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		4E98A3872A9CA57B003052D3 /* Sources */ = {
@@ -272,6 +358,7 @@
 				4E98A3912A9CA57B003052D3 /* SceneDelegate.swift in Sources */,
 				4E98A3A32A9CA634003052D3 /* HomeViewController.swift in Sources */,
 				4E98A3A82A9CA6B6003052D3 /* EditDiaryViewController.swift in Sources */,
+				4ED312302AA48BFB00677EE0 /* WeatherResponse.swift in Sources */,
 				4E1550842A9E049100C8A500 /* DiaryListCell.swift in Sources */,
 				4E6138C02A9F9E8B003A2B37 /* DiaryListThumbnailCell.swift in Sources */,
 				4E98A3BA2A9CAD60003052D3 /* Weather.swift in Sources */,
@@ -279,6 +366,7 @@
 				4E7A15062AA0BFA1005FCD9C /* ProgressTagCell.swift in Sources */,
 				4E7A15042AA0A9C8005FCD9C /* ProgressListCell.swift in Sources */,
 				4E6138C12A9F9E8B003A2B37 /* DiaryProgressCell.swift in Sources */,
+				4ED3122E2AA46BA700677EE0 /* WeatherManager.swift in Sources */,
 				4E98A3B62A9CAA16003052D3 /* ProfileViewController.swift in Sources */,
 				4E15508B2A9E0DF500C8A500 /* CustomLabel.swift in Sources */,
 				4E1550892A9E0C6500C8A500 /* CustomStackView.swift in Sources */,
@@ -412,6 +500,7 @@
 		};
 		4E98A3A02A9CA57E003052D3 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F45C74DA7EACBE351DEA5098 /* Pods-DiaryApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -440,6 +529,7 @@
 		};
 		4E98A3A12A9CA57E003052D3 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 29E4E142F65D379C5B088A3D /* Pods-DiaryApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
