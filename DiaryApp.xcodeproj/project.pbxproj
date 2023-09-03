@@ -245,7 +245,6 @@
 				4EA808232AA1D41100A4D465 /* FirebaseStorage */,
 				4E97E6CC2AA39F7600DD4C1F /* Kingfisher */,
 				4E0EBBA22AA4F11100CD64DE /* Alamofire */,
-				4E0EBB9F2AA4EC1200CD64DE /* Alamofire */,
 			);
 			productName = DiaryApp;
 			productReference = 4E98A38B2A9CA57B003052D3 /* DiaryApp.app */;
@@ -280,7 +279,6 @@
 				4EA8081C2AA1D41100A4D465 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				4E97E6CB2AA39F7600DD4C1F /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				4E0EBBA12AA4F11100CD64DE /* XCRemoteSwiftPackageReference "Alamofire" */,
-				4E0EBB9E2AA4EC1100CD64DE /* XCRemoteSwiftPackageReference "Alamofire" */,
 			);
 			productRefGroup = 4E98A38C2A9CA57B003052D3 /* Products */;
 			projectDirPath = "";
@@ -540,7 +538,6 @@
 
 /* Begin XCRemoteSwiftPackageReference section */
 		4E0EBBA12AA4F11100CD64DE /* XCRemoteSwiftPackageReference "Alamofire" */ = {
-		4E0EBB9E2AA4EC1100CD64DE /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire";
 			requirement = {
@@ -578,9 +575,6 @@
 		4E0EBBA22AA4F11100CD64DE /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 4E0EBBA12AA4F11100CD64DE /* XCRemoteSwiftPackageReference "Alamofire" */;
-		4E0EBB9F2AA4EC1200CD64DE /* Alamofire */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 4E0EBB9E2AA4EC1100CD64DE /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
 		};
 		4E6138AF2A9EEF50003A2B37 /* SnapKit */ = {
