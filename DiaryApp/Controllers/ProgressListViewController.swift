@@ -19,6 +19,9 @@ class ProgressListViewController: UIViewController {
         view.backgroundColor = .systemBackground
         configureCollectionView()
         configureLayout()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
         firebaseOperation()
     }
 
@@ -33,18 +36,9 @@ class ProgressListViewController: UIViewController {
 
     private func firebaseOperation() {
         FirestoreService().getPostData { post in
-            post?.forEach { data in
-                let content = data.content
-                let goal = data.goal
-                let image = data.image
-                let tag = data.tag
-                let temperature = data.temperature
-                let weather = data.weather
-                let weatherIcon = data.weatherIcon
-
-                let item = Post(content: content, goal: goal, image: image, tag: tag, temperature: temperature, weather: weather, weatherIcon: weatherIcon)
-
-                self.postList.append(item)
+            post?.forEach { _ in
+                guard let post = post else { return }
+                self.postList = post
 
                 DispatchQueue.main.async {
                     self.collectionView.reloadData()
@@ -94,8 +88,7 @@ extension ProgressListViewController: UICollectionViewDataSource {
         }
         cell.weatherImageView.image = UIImage(systemName: "sun.max")
         cell.descriptionLabel.text = item.content
-        cell.tagValue = item.tag
-        print("### \(item.tag)")
+        cell.tagValue = [item.tag]
         cell.backgroundColor = .systemRed
         cell.layer.cornerRadius = 20
         return cell

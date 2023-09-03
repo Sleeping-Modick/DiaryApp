@@ -33,6 +33,9 @@ class HomeViewController: UIViewController {
         configureCollectionView()
         configureLayout()
         addSearchBar()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
         firebaseOperation()
     }
     
@@ -47,17 +50,9 @@ class HomeViewController: UIViewController {
     
     private func firebaseOperation() {
         FirestoreService().getPostData { post in
-            post?.forEach { data in
-                let content = data.content
-                let goal = data.goal
-                let image = data.image
-                let tag = data.tag
-                let temperature = data.temperature
-                let weather = data.weather
-                let weatherIcon = data.weatherIcon
-                
-                let item = Post(content: content, goal: goal, image: image, tag: tag, temperature: temperature, weather: weather, weatherIcon: weatherIcon)
-                self.postList.append(item)
+            post?.forEach { _ in
+                guard let post = post else { return }
+                self.postList = post
                 
                 DispatchQueue.main.async {
                     self.collectionView.reloadData()
@@ -70,7 +65,7 @@ class HomeViewController: UIViewController {
         collectionView.register(HomeFeedCell.self, forCellWithReuseIdentifier: HomeFeedCell.identifier)
         collectionView.delegate = self
         collectionView.dataSource = self
-        
+
         collectionView.isScrollEnabled = true
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.showsVerticalScrollIndicator = true
@@ -84,7 +79,7 @@ class HomeViewController: UIViewController {
         
         collectionView.collectionViewLayout = collectionViewFlowLayout
     }
-    
+
     private func configureLayout() {
         view.addSubview(collectionView)
 
@@ -115,6 +110,9 @@ extension HomeViewController: UICollectionViewDataSource {
         if let image = item.image {
             cell.myView.kf.setImage(with: URL(string: image))
         }
+        
+        cell.layer.borderColor = UIColor.black.cgColor
+        cell.layer.borderWidth = 1
         cell.layer.cornerRadius = 20
         return cell
     }

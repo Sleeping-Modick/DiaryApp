@@ -33,7 +33,7 @@ final class FirestoreService {
 
     func addPostDocument(content: String, goal: String, image: String, tag: [String], temperature: String, weather: String, weatherIcon: String, completion: @escaping (String) -> Void) {
         // Add a new document with a generated ID
-        FirestoreService.db.collection("Info").document(goal).setData([
+        FirestoreService.db.collection("Post").document(goal).setData([
             "content": content,
             "goal": goal,
             "image": image,

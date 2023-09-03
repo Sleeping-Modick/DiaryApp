@@ -8,141 +8,166 @@
 import SnapKit
 import UIKit
 
-class NewDiaryViewController: UIViewController {
-    let options = ["운동", "식단", "헬스", "크로스핏", "양배추", "닭가슴살", "닭안심살"]
+enum Options: String {
+    case exercise = "운동"
+    case food = "식단"
+    case healthy = "헬스"
+    case crossFit = "크로스핏"
+}
+
+final class NewDiaryViewController: UIViewController {
+    let options: [Options] = [.exercise, .food, .healthy, .crossFit]
+
+    var postList: [Post] = []
     var selectedButton: UIButton?
+
     lazy var pickerView: UIPickerView = {
         let pickerView = UIPickerView()
         pickerView.delegate = self
         pickerView.dataSource = self
+
         return pickerView
     }()
 
-    lazy var pickImageButton: UIButton = {
+    private let pickImageButton: UIButton = {
         let button = UIButton(type: .system)
         button.setImage(UIImage(systemName: "camera"), for: .normal)
         button.addTarget(self, action: #selector(pickImage), for: .touchUpInside)
+        button.layer.cornerRadius = 20
+        button.layer.borderWidth = 2
+        button.layer.borderColor = UIColor.lightGray.cgColor
         return button
     }()
 
     lazy var textView: UITextView = {
         let textView = UITextView()
-        textView.text = "입력하시요"
+        textView.text = "내용을 입력하세요"
         textView.layer.borderWidth = 1.0
         textView.layer.borderColor = UIColor.lightGray.cgColor
-        textView.layer.cornerRadius = 5.0
+        textView.layer.cornerRadius = 10
+        textView.contentInset = UIEdgeInsets(top: 5, left: 5, bottom: 0, right: 0)
         return textView
     }()
 
-    lazy var button1: UIButton = {
+    private let goalButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle("Button 1", for: .normal)
-        button.addTarget(self, action: #selector(button1Tapped), for: .touchUpInside)
+        button.setTitle("목표", for: .normal)
+        button.layer.borderWidth = 1
+        button.layer.borderColor = UIColor.black.cgColor
+        button.layer.masksToBounds = true
+        button.layer.cornerRadius = 15
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(tappedGoalButton), for: .touchUpInside)
         return button
     }()
 
-    lazy var button2: UIButton = {
+    private let exercisButton: UIButton = {
         let button = UIButton(type: .system)
+        button.layer.borderWidth = 1
+        button.layer.borderColor = UIColor.black.cgColor
+        button.layer.masksToBounds = true
+        button.layer.cornerRadius = 15
+        button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("운동", for: .normal)
-        button.addTarget(self, action: #selector(button1Tapped), for: .touchUpInside)
+        button.addTarget(self, action: #selector(tappedHealthyButton), for: .touchUpInside)
         return button
     }()
 
-    lazy var button3: UIButton = {
+    private let healthyButton: UIButton = {
         let button = UIButton(type: .system)
+        button.layer.borderWidth = 1
+        button.layer.borderColor = UIColor.black.cgColor
+        button.layer.masksToBounds = true
+        button.layer.cornerRadius = 15
+        button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("건강", for: .normal)
-        button.addTarget(self, action: #selector(button1Tapped), for: .touchUpInside)
+        button.addTarget(self, action: #selector(tappedHealthyButton), for: .touchUpInside)
         return button
     }()
 
-    lazy var button4: UIButton = {
+    private let foodButton: UIButton = {
         let button = UIButton(type: .system)
+        button.layer.borderWidth = 1
+        button.layer.borderColor = UIColor.black.cgColor
+        button.layer.masksToBounds = true
+        button.layer.cornerRadius = 15
+        button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("식단", for: .normal)
-        button.addTarget(self, action: #selector(button1Tapped), for: .touchUpInside)
+        button.addTarget(self, action: #selector(tappedFoodButton), for: .touchUpInside)
         return button
     }()
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    private func setupLayout() {
         view.backgroundColor = .white
         view.addSubview(pickImageButton)
         view.addSubview(textView)
-        view.addSubview(button1)
-        view.addSubview(button2)
-        view.addSubview(button3)
-        view.addSubview(button4)
+        view.addSubview(goalButton)
+        view.addSubview(exercisButton)
+        view.addSubview(healthyButton)
+        view.addSubview(foodButton)
+
         pickImageButton.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            //      make.centerY.equalToSuperview()
+            make.top.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(20)
+            make.bottom.equalTo(textView.snp.top).offset(-15)
+            make.height.equalTo(pickImageButton.snp.width)
         }
+
         textView.snp.makeConstraints { make in
             make.top.equalTo(pickImageButton.snp.bottom).offset(100)
             make.leading.trailing.equalToSuperview().inset(20)
-            make.bottom.equalTo(view.safeAreaLayoutGuide).inset(200)
-            make.height.equalTo(button1).offset(100)
+            make.bottom.equalTo(view.safeAreaLayoutGuide).inset(100)
         }
-        button1.snp.makeConstraints { make in
-            make.bottom.equalTo(textView.snp.bottom).offset(20)
-            make.trailing.equalTo(textView).inset(20)
-            make.top.equalTo(textView).offset(150)
+
+        goalButton.snp.makeConstraints { make in
+            make.trailing.equalTo(textView)
+            make.top.equalTo(textView.snp.bottom).offset(12)
+            make.width.equalTo(150)
+            make.height.equalTo(30)
         }
-        button2.snp.makeConstraints { make in
-            make.top.equalTo(button1.snp.bottom).offset(20)
-            make.leading.equalTo(button1)
+
+        foodButton.snp.makeConstraints { make in
+            make.top.equalTo(goalButton.snp.bottom).offset(12)
+            make.leading.equalTo(textView.snp.leading)
+            make.width.equalTo(100)
         }
-        button3.snp.makeConstraints { make in
-            make.top.equalTo(button1.snp.bottom).offset(20)
-            make.leading.equalTo(button2.snp.leading).offset(-100)
+
+        healthyButton.snp.makeConstraints { make in
+            make.top.equalTo(goalButton.snp.bottom).offset(12)
+            make.centerX.equalToSuperview()
+            make.width.equalTo(100)
         }
-        button4.snp.makeConstraints { make in
-            make.top.equalTo(button1.snp.bottom).offset(20)
-            make.leading.equalTo(button2.snp.leading).offset(-200)
+
+        exercisButton.snp.makeConstraints { make in
+            make.top.equalTo(goalButton.snp.bottom).offset(12)
+            make.trailing.equalTo(textView.snp.trailing)
+            make.width.equalTo(100)
         }
     }
 
-    @objc func button1Tapped() {
-        presentAlertWithPicker(for: button1)
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setupLayout()
     }
 
-    @objc func button2Tapped() {
-        presentAlertWithPicker(for: button2)
-    }
-
-    @objc func button3Tapped() {
-        presentAlertWithPicker(for: button3)
-    }
-
-    @objc func button4Tapped() {
-        presentAlertWithPicker(for: button4)
-    }
-
-    func presentAlertWithPicker(for button: UIButton) {
-        selectedButton = button
-        let alertController = UIAlertController(title: "Select", message: nil, preferredStyle: .alert)
-        alertController.addTextField { textField in
-            textField.inputView = self.pickerView
+    @objc func tappedGoalButton() {
+        print("### \(#function)")
+        if #available(iOS 16.0, *) {
+            let vc = DiaryCalendarViewController()
+            vc.modalPresentationStyle = .automatic
+            self.present(vc, animated: true)
         }
-        let confirmAction = UIAlertAction(title: "수정", style: .default) { [weak self] _ in
-            guard let self = self else { return }
-            let textField = alertController.textFields?.first
-            if textField?.inputView == self.pickerView {
-                let selectedRow = self.pickerView.selectedRow(inComponent: 0)
-                let selectedOption = self.options[selectedRow]
-                button.setTitle(selectedOption, for: .normal)
-            } else {
-                // Handle custom input from text field
-                if let customInput = textField?.text, !customInput.isEmpty {
-                    button.setTitle(customInput, for: .normal)
-                }
-            }
-            self.selectedButton = nil
-        }
-        let cancelAction = UIAlertAction(title: "취소", style: .cancel) { _ in
-            self.selectedButton = nil
-        }
-        alertController.addAction(confirmAction)
-        alertController.addAction(cancelAction)
-        present(alertController, animated: true, completion: nil)
+    }
+
+    @objc func tappedExerciseButton() {
+        print("### \(#function)")
+    }
+
+    @objc func tappedHealthyButton() {
+        print("### \(#function)")
+    }
+
+    @objc func tappedFoodButton() {
+        print("### \(#function)")
     }
 }
 
@@ -162,12 +187,14 @@ extension NewDiaryViewController: UIImagePickerControllerDelegate, UINavigationC
         picker.dismiss(animated: true, completion: nil)
         if let selectedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
             let imageView = UIImageView(image: selectedImage)
-            imageView.contentMode = .scaleAspectFit
+            imageView.layer.cornerRadius = 20
+            imageView.layer.masksToBounds = true
+            imageView.contentMode = .scaleToFill
+            imageView.layer.borderWidth = 1
+            imageView.layer.borderColor = UIColor.lightGray.cgColor
             view.addSubview(imageView)
             imageView.snp.makeConstraints { make in
-                make.centerX.equalTo(pickImageButton)
-                make.centerY.equalTo(pickImageButton)
-                make.width.height.equalTo(300)
+                make.top.bottom.leading.trailing.equalTo(pickImageButton)
             }
         }
     }
@@ -183,6 +210,6 @@ extension NewDiaryViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     }
 
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return options[row]
+        return options[row].rawValue
     }
 }
