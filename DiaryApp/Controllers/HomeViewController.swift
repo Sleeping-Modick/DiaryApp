@@ -106,10 +106,11 @@ extension HomeViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let item = postList[indexPath.row]
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeFeedCell.identifier, for: indexPath) as? HomeFeedCell else { return UICollectionViewCell() }
-        cell.backgroundColor = .systemOrange
         if let image = item.image {
             cell.myView.kf.setImage(with: URL(string: image))
         }
+        cell.weatherImage.image = UIImage(systemName: item.weatherIcon)
+        
         
         cell.layer.borderColor = UIColor.black.cgColor
         cell.layer.borderWidth = 1

@@ -14,7 +14,7 @@ final class HomeFeedCell: UICollectionViewCell {
     lazy var myView = CustomImageView(frame: .zero)
     lazy var weatherImage = CustomImageView(frame: .zero)
 
-    let sizeWidth = 70.0
+    let sizeWidth = 50
 
     @available(*, unavailable)
     required init?(coder: NSCoder) {
@@ -30,6 +30,8 @@ final class HomeFeedCell: UICollectionViewCell {
         self.myView.layer.cornerRadius = 20
 
         self.weatherImage.backgroundColor = .systemBlue
+        self.weatherImage.contentMode = .center
+        self.weatherImage.tintColor = .white
         self.weatherImage.layer.cornerRadius = CGFloat(self.sizeWidth / 2)
 
         self.myView.addSubview(self.weatherImage)
