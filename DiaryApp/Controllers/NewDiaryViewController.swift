@@ -98,6 +98,22 @@ final class NewDiaryViewController: UIViewController {
         return button
     }()
 
+    let weatherIconImageView: UIImageView = {
+        let imageView = UIImageView()
+
+        return imageView
+    }()
+
+    let weatherDescriptionLabel: UILabel = {
+        let label = UILabel()
+        return label
+    }()
+
+    let temperatureLabel: UILabel = {
+        let label = UILabel()
+        return label
+    }()
+
     private func setupLayout() {
         view.backgroundColor = .white
         view.addSubview(pickImageButton)
