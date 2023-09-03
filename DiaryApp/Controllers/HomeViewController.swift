@@ -33,9 +33,6 @@ class HomeViewController: UIViewController {
         configureCollectionView()
         configureLayout()
         addSearchBar()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
         firebaseOperation()
     }
     

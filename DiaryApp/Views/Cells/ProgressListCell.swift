@@ -15,6 +15,8 @@ class ProgressListCell: UICollectionViewCell {
     lazy var weatherImageView = CustomImageView(frame: .zero)
     lazy var descriptionLabel = CustomLabel(frame: .zero)
     
+    var tagValue: [String] = []
+    
     private let collectionView = CustomCollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
     
     private let collectionViewFlowLayout: UICollectionViewFlowLayout = {
@@ -40,7 +42,8 @@ class ProgressListCell: UICollectionViewCell {
     }
     
     private func configureCell() {
-        imageView.contentMode = .scaleAspectFit
+        imageView.contentMode = .scaleToFill
+        imageView.layer.masksToBounds = true
         imageView.layer.cornerRadius = 20
         imageView.backgroundColor = .systemBrown
         
@@ -106,12 +109,14 @@ class ProgressListCell: UICollectionViewCell {
 
 extension ProgressListCell: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 3
+        return tagValue.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProgressTagCell.identifier, for: indexPath) as? ProgressTagCell else { return UICollectionViewCell() }
-        cell.tagTitleLabel.text = "Hi"
+
+        let item = tagValue[indexPath.row]
+        cell.tagTitleLabel.text = item
         cell.backgroundColor = .systemYellow
         cell.layer.cornerRadius = 5
         return cell
