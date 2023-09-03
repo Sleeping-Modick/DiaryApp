@@ -5,6 +5,7 @@
 //  Created by (^ㅗ^)7 iMac on 2023/08/28.
 //
 
+import Alamofire
 import SnapKit
 import UIKit
 
@@ -105,6 +106,7 @@ final class NewDiaryViewController: UIViewController {
         view.addSubview(exercisButton)
         view.addSubview(healthyButton)
         view.addSubview(foodButton)
+        view.addSubview(weatherDescriptionLabel)
 
         pickImageButton.snp.makeConstraints { make in
             make.top.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(20)
@@ -142,11 +144,18 @@ final class NewDiaryViewController: UIViewController {
             make.trailing.equalTo(textView.snp.trailing)
             make.width.equalTo(100)
         }
+
+        weatherDescriptionLabel.snp.makeConstraints { make in
+            print("### \(weatherDescriptionLabel.bounds.height)")
+            make.centerX.equalToSuperview()
+            make.top.equalTo(exercisButton.snp.bottom).offset(-50)
+        }
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupLayout()
+        fetchAndDisplayWeather()
     }
 
     @objc func tappedGoalButton() {
@@ -168,6 +177,41 @@ final class NewDiaryViewController: UIViewController {
 
     @objc func tappedFoodButton() {
         print("### \(#function)")
+    }
+
+    func fetchAndDisplayWeather() {
+        let city = "Busan"
+        WeatherManager.shared.fetchWeather(for: city) { result in
+            switch result {
+            case .success(let weatherData):
+                // 날씨 정보를 받아와 UI에 표시
+                DispatchQueue.main.async {
+                    self.weatherDescriptionLabel.text = weatherData.description
+                    let celsiusTemp = round(weatherData.temperature - 273.15)
+
+                    self.temperatureLabel.text = "\(celsiusTemp) °C"
+
+                    // 아이콘 이미지를 표시
+                    if let iconUrl = URL(string: weatherData.iconUrl) {
+                        DispatchQueue.global().async {
+                            if let imageData = try? Data(contentsOf: iconUrl),
+                               let iconImage = UIImage(data: imageData)
+                            {
+                                DispatchQueue.main.async {
+                                    print("###이미지 다운로드 완ㄹ")
+
+                                    self.weatherIconImageView.image = iconImage
+                                }
+                            } else {
+                                print("이미지 다운로드 변환 실패 ###")
+                            }
+                        }
+                    }
+                }
+            case .failure(let error):
+                print("###날씨 정보 가져오기 실패: \(error)")
+            }
+        }
     }
 }
 

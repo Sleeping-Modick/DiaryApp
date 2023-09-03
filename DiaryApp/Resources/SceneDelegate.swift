@@ -23,8 +23,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             (NewDiaryViewController(), "plus.square"),
             (DiaryProgressViewController(), "tag"),
             (ProfileViewController(), "person"),
-            (DiaryProgressViewController(), "tag"),
-            (ProfileViewController(), "person"),
         ]
         
         
