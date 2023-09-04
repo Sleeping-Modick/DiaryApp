@@ -8,6 +8,7 @@
 import Foundation
 
 struct Post: Codable {
+    var date: Date?
     var content: String?
     var goal: String?
     var image: String?
@@ -17,6 +18,7 @@ struct Post: Codable {
     var weatherIcon: String
 
     enum CodingKeys: String, CodingKey {
+        case date
         case content
         case goal
         case image

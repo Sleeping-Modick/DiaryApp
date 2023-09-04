@@ -21,7 +21,12 @@ final class NewDiaryViewController: UIViewController {
 
     var postList: [Post] = []
     var selectedButton: UIButton?
-
+    
+    var selectedTitle: String?
+    var selectedDate: Date?
+    
+    var selectedTag = [String]()
+    
     lazy var pickerView: UIPickerView = {
         let pickerView = UIPickerView()
         pickerView.delegate = self
@@ -70,10 +75,12 @@ final class NewDiaryViewController: UIViewController {
         button.layer.cornerRadius = 15
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("운동", for: .normal)
-        button.addTarget(self, action: #selector(tappedHealthyButton), for: .touchUpInside)
+        button.addTarget(self, action: #selector(tappedExerciseButton), for: .touchUpInside)
         return button
     }()
-
+    
+    var checkedExercise = false
+    
     private let healthyButton: UIButton = {
         let button = UIButton(type: .system)
         button.layer.borderWidth = 1
@@ -85,7 +92,9 @@ final class NewDiaryViewController: UIViewController {
         button.addTarget(self, action: #selector(tappedHealthyButton), for: .touchUpInside)
         return button
     }()
-
+    
+    var checkedHealthy = false
+    
     private let foodButton: UIButton = {
         let button = UIButton(type: .system)
         button.layer.borderWidth = 1
@@ -103,7 +112,22 @@ final class NewDiaryViewController: UIViewController {
 
         return imageView
     }()
-
+    
+    
+    var checkedFood = false
+    
+    let completeButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.layer.borderWidth = 1
+        button.layer.borderColor = UIColor.black.cgColor
+        button.layer.masksToBounds = true
+        button.layer.cornerRadius = 15
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitle("완료", for: .normal)
+        button.addTarget(self, action: #selector(tappedCompleteButton), for: .touchUpInside)
+        return button
+    }()
+    
     let weatherDescriptionLabel: UILabel = {
         let label = UILabel()
         return label
@@ -123,7 +147,8 @@ final class NewDiaryViewController: UIViewController {
         view.addSubview(healthyButton)
         view.addSubview(foodButton)
         view.addSubview(weatherDescriptionLabel)
-
+        view.addSubview(completeButton)
+        
         pickImageButton.snp.makeConstraints { make in
             make.top.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(20)
             make.bottom.equalTo(textView.snp.top).offset(-15)
@@ -133,12 +158,14 @@ final class NewDiaryViewController: UIViewController {
         textView.snp.makeConstraints { make in
             make.top.equalTo(pickImageButton.snp.bottom).offset(100)
             make.leading.trailing.equalToSuperview().inset(20)
-            make.bottom.equalTo(view.safeAreaLayoutGuide).inset(100)
+            //            make.bottom.equalTo(view.safeAreaLayoutGuide).inset(100)
+            make.bottom.equalTo(goalButton.snp.top).inset(-12)
+            make.height.equalTo(150)
         }
 
         goalButton.snp.makeConstraints { make in
             make.trailing.equalTo(textView)
-            make.top.equalTo(textView.snp.bottom).offset(12)
+            //            make.top.equalTo(textView.snp.bottom).offset(12)
             make.width.equalTo(150)
             make.height.equalTo(30)
         }
@@ -165,9 +192,36 @@ final class NewDiaryViewController: UIViewController {
             print("### \(weatherDescriptionLabel.bounds.height)")
             make.centerX.equalToSuperview()
             make.top.equalTo(exercisButton.snp.bottom).offset(-50)
+            
+            completeButton.snp.makeConstraints { make in
+                make.top.equalTo(foodButton.snp.bottom).offset(12)
+                make.leading.equalTo(view.safeAreaLayoutGuide.snp.leading).offset(20)
+                make.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailing).offset(-20)
+                make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(-12)
+            }
         }
     }
-
+    
+    func checkedTag() {
+        if checkedExercise {
+            selectedTag.append("운동")
+        }
+        
+        if checkedHealthy {
+            selectedTag.append("건강")
+        }
+        
+        if checkedFood {
+            selectedTag.append("음식")
+            
+            weatherDescriptionLabel.snp.makeConstraints { make in
+                print("### \(weatherDescriptionLabel.bounds.height)")
+                make.centerX.equalToSuperview()
+                make.top.equalTo(exercisButton.snp.bottom).offset(-50)
+            }
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupLayout()
@@ -179,22 +233,39 @@ final class NewDiaryViewController: UIViewController {
         if #available(iOS 16.0, *) {
             let vc = DiaryCalendarViewController()
             vc.modalPresentationStyle = .automatic
+            vc.dataSendClosure = { data in
+                self.selectedTitle = data.0
+                self.selectedDate = data.1
+            }
+            
             self.present(vc, animated: true)
         }
     }
 
     @objc func tappedExerciseButton() {
         print("### \(#function)")
+        checkedExercise = !checkedExercise
+        exercisButton.backgroundColor = (checkedExercise == false) ? .white : .systemGray
     }
 
     @objc func tappedHealthyButton() {
         print("### \(#function)")
+        checkedHealthy = !checkedHealthy
+        healthyButton.backgroundColor = (checkedHealthy == false) ? .white : .systemGray
     }
 
     @objc func tappedFoodButton() {
         print("### \(#function)")
+        checkedFood = !checkedFood
+        foodButton.backgroundColor = (checkedFood == false) ? .white : .systemGray
     }
-
+    
+    @objc func tappedCompleteButton() {
+        checkedTag()
+        FirestoreManager().addPostDocument(content: textView.text, goal: selectedTitle!, date: selectedDate!, image: "이미지", tag: selectedTag, temperature: "온도", weather: "날씨", weatherIcon: "아이콘") { _ in
+        }
+    }
+    
     func fetchAndDisplayWeather() {
         let city = "Busan"
         WeatherManager.shared.fetchWeather(for: city) { result in

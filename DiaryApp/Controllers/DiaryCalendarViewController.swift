@@ -18,6 +18,9 @@ class DiaryCalendarViewController: UIViewController {
     // bottomSheet가 view의 상단에서 떨어진 거리
     private var bottomSheetViewTopConstraint: NSLayoutConstraint!
     
+    // 전달받을 클로저
+    var dataSendClosure: ((_ data: (String?, Date?)) -> Void)?
+    
     // 기존 화면을 흐려지게 만들기 위한 뷰
     private let dimmedBackView: UIView = {
         let view = UIView()
@@ -46,6 +49,7 @@ class DiaryCalendarViewController: UIViewController {
     }()
     
     var selectedDate: DateComponents? = nil
+    var selectedTitle: String? = nil
     
     // MARK: - Properties
     
@@ -232,6 +236,7 @@ class DiaryCalendarViewController: UIViewController {
             $0.trailing.equalToSuperview().inset(10)
             $0.height.equalTo(50)
         }
+        purposeTextField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
     }
     
     func setTotalStackView() {
@@ -441,7 +446,8 @@ class DiaryCalendarViewController: UIViewController {
     }
     
     @objc func clickedSaveBtn() {
-        // save
+        self.dataSendClosure?((selectedTitle, selectedDate?.date))
+        self.dismiss(animated: true, completion: nil)
     }
     
     // UITapGestureRecognizer 연결 함수 부분
@@ -459,6 +465,10 @@ class DiaryCalendarViewController: UIViewController {
                 break
             }
         }
+    }
+    
+    @objc func textFieldDidChange() {
+        self.selectedTitle = self.purposeTextField.text!
     }
 }
 

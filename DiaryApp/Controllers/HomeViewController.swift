@@ -49,7 +49,7 @@ class HomeViewController: UIViewController {
     }()
     
     private func firebaseOperation() {
-        FirestoreService().getPostData { post in
+        FirestoreManager().getPostData { post in
             post?.forEach { _ in
                 guard let post = post else { return }
                 self.postList = post
