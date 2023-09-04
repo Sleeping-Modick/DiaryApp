@@ -18,7 +18,7 @@ enum Options: String {
 
 final class NewDiaryViewController: UIViewController {
     let options: [Options] = [.exercise, .food, .healthy, .crossFit]
-
+    
     var postList: [Post] = []
     var selectedButton: UIButton?
     
@@ -31,10 +31,10 @@ final class NewDiaryViewController: UIViewController {
         let pickerView = UIPickerView()
         pickerView.delegate = self
         pickerView.dataSource = self
-
+        
         return pickerView
     }()
-
+    
     private let pickImageButton: UIButton = {
         let button = UIButton(type: .system)
         button.setImage(UIImage(systemName: "camera"), for: .normal)
@@ -44,7 +44,7 @@ final class NewDiaryViewController: UIViewController {
         button.layer.borderColor = UIColor.lightGray.cgColor
         return button
     }()
-
+    
     lazy var textView: UITextView = {
         let textView = UITextView()
         textView.text = "내용을 입력하세요"
@@ -54,7 +54,7 @@ final class NewDiaryViewController: UIViewController {
         textView.contentInset = UIEdgeInsets(top: 5, left: 5, bottom: 0, right: 0)
         return textView
     }()
-
+    
     private let goalButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("목표", for: .normal)
@@ -66,7 +66,7 @@ final class NewDiaryViewController: UIViewController {
         button.addTarget(self, action: #selector(tappedGoalButton), for: .touchUpInside)
         return button
     }()
-
+    
     private let exercisButton: UIButton = {
         let button = UIButton(type: .system)
         button.layer.borderWidth = 1
@@ -106,10 +106,10 @@ final class NewDiaryViewController: UIViewController {
         button.addTarget(self, action: #selector(tappedFoodButton), for: .touchUpInside)
         return button
     }()
-
+    
     let weatherIconImageView: UIImageView = {
         let imageView = UIImageView()
-
+        
         return imageView
     }()
     
@@ -132,12 +132,12 @@ final class NewDiaryViewController: UIViewController {
         let label = UILabel()
         return label
     }()
-
+    
     let temperatureLabel: UILabel = {
         let label = UILabel()
         return label
     }()
-
+    
     private func setupLayout() {
         view.backgroundColor = .white
         view.addSubview(pickImageButton)
@@ -148,172 +148,178 @@ final class NewDiaryViewController: UIViewController {
         view.addSubview(foodButton)
         view.addSubview(weatherDescriptionLabel)
         view.addSubview(completeButton)
+        view.addSubview(temperatureLabel)
+        view.addSubview(weatherIconImageView)
         
         pickImageButton.snp.makeConstraints { make in
             make.top.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(20)
             make.bottom.equalTo(textView.snp.top).offset(-15)
             make.height.equalTo(pickImageButton.snp.width)
         }
-
+        
         textView.snp.makeConstraints { make in
             make.top.equalTo(pickImageButton.snp.bottom).offset(100)
             make.leading.trailing.equalToSuperview().inset(20)
             //            make.bottom.equalTo(view.safeAreaLayoutGuide).inset(100)
             make.bottom.equalTo(goalButton.snp.top).inset(-12)
-            make.height.equalTo(150)
+            make.height.equalTo(100)
         }
-
+        
         goalButton.snp.makeConstraints { make in
             make.trailing.equalTo(textView)
             //            make.top.equalTo(textView.snp.bottom).offset(12)
             make.width.equalTo(150)
             make.height.equalTo(30)
         }
-
+        
         foodButton.snp.makeConstraints { make in
             make.top.equalTo(goalButton.snp.bottom).offset(12)
             make.leading.equalTo(textView.snp.leading)
             make.width.equalTo(100)
+            make.height.equalTo(goalButton)
         }
-
+        
         healthyButton.snp.makeConstraints { make in
             make.top.equalTo(goalButton.snp.bottom).offset(12)
             make.centerX.equalToSuperview()
             make.width.equalTo(100)
         }
-
+        
         exercisButton.snp.makeConstraints { make in
             make.top.equalTo(goalButton.snp.bottom).offset(12)
             make.trailing.equalTo(textView.snp.trailing)
             make.width.equalTo(100)
         }
-
+        
         weatherDescriptionLabel.snp.makeConstraints { make in
             print("### \(weatherDescriptionLabel.bounds.height)")
             make.centerX.equalToSuperview()
-            make.top.equalTo(exercisButton.snp.bottom).offset(-50)
-            
-            completeButton.snp.makeConstraints { make in
-                make.top.equalTo(foodButton.snp.bottom).offset(12)
-                make.leading.equalTo(view.safeAreaLayoutGuide.snp.leading).offset(20)
-                make.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailing).offset(-20)
-                make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(-12)
-            }
-        }
-    }
-    
-    func checkedTag() {
-        if checkedExercise {
-            selectedTag.append("운동")
+            make.top.equalTo(exercisButton.snp.bottom).offset(50)
         }
         
-        if checkedHealthy {
-            selectedTag.append("건강")
+        completeButton.snp.makeConstraints { make in
+            make.top.equalTo(foodButton.snp.bottom).offset(15)
+            make.leading.equalTo(view.safeAreaLayoutGuide.snp.leading).offset(20)
+            make.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailing).offset(-20)
+            make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(-60)
+            
+        }
+        temperatureLabel.snp.makeConstraints { make in
+            make.trailing.equalTo(weatherDescriptionLabel.snp.trailing).offset(-120)
+            make.centerY.equalTo(weatherDescriptionLabel)
+        }
+        weatherIconImageView.snp.makeConstraints { make in
+            make.trailing.equalTo(textView)
+            make.centerY.equalTo(temperatureLabel)
+        }
+    }
+func checkedTag() {
+    if checkedExercise {
+        selectedTag.append("운동")
+    }
+    
+    if checkedHealthy {
+        selectedTag.append("건강")
+    }
+    
+    if checkedFood {
+        selectedTag.append("음식")
+        
+    }
+}
+
+override func viewDidLoad() {
+    super.viewDidLoad()
+    setupLayout()
+    fetchAndDisplayWeather()
+}
+
+@objc func tappedGoalButton() {
+    print("### \(#function)")
+    if #available(iOS 16.0, *) {
+        let vc = DiaryCalendarViewController()
+        vc.modalPresentationStyle = .automatic
+        vc.dataSendClosure = { data in
+            self.selectedTitle = data.0
+            self.selectedDate = data.1
         }
         
-        if checkedFood {
-            selectedTag.append("음식")
-            
-            weatherDescriptionLabel.snp.makeConstraints { make in
-                print("### \(weatherDescriptionLabel.bounds.height)")
-                make.centerX.equalToSuperview()
-                make.top.equalTo(exercisButton.snp.bottom).offset(-50)
-            }
-        }
+        self.present(vc, animated: true)
     }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        setupLayout()
-        fetchAndDisplayWeather()
+}
+
+@objc func tappedExerciseButton() {
+    print("### \(#function)")
+    checkedExercise = !checkedExercise
+    exercisButton.backgroundColor = (checkedExercise == false) ? .white : .systemGray
+}
+
+@objc func tappedHealthyButton() {
+    print("### \(#function)")
+    checkedHealthy = !checkedHealthy
+    healthyButton.backgroundColor = (checkedHealthy == false) ? .white : .systemGray
+}
+
+@objc func tappedFoodButton() {
+    print("### \(#function)")
+    checkedFood = !checkedFood
+    foodButton.backgroundColor = (checkedFood == false) ? .white : .systemGray
+}
+
+@objc func tappedCompleteButton() {
+    checkedTag()
+    FirestoreManager().addPostDocument(content: textView.text, goal: selectedTitle!, date: selectedDate!, image: "이미지", tag: selectedTag, temperature: "온도", weather: "날씨", weatherIcon: "아이콘") { _ in
     }
+}
 
-    @objc func tappedGoalButton() {
-        print("### \(#function)")
-        if #available(iOS 16.0, *) {
-            let vc = DiaryCalendarViewController()
-            vc.modalPresentationStyle = .automatic
-            vc.dataSendClosure = { data in
-                self.selectedTitle = data.0
-                self.selectedDate = data.1
-            }
-            
-            self.present(vc, animated: true)
-        }
-    }
-
-    @objc func tappedExerciseButton() {
-        print("### \(#function)")
-        checkedExercise = !checkedExercise
-        exercisButton.backgroundColor = (checkedExercise == false) ? .white : .systemGray
-    }
-
-    @objc func tappedHealthyButton() {
-        print("### \(#function)")
-        checkedHealthy = !checkedHealthy
-        healthyButton.backgroundColor = (checkedHealthy == false) ? .white : .systemGray
-    }
-
-    @objc func tappedFoodButton() {
-        print("### \(#function)")
-        checkedFood = !checkedFood
-        foodButton.backgroundColor = (checkedFood == false) ? .white : .systemGray
-    }
-    
-    @objc func tappedCompleteButton() {
-        checkedTag()
-        FirestoreManager().addPostDocument(content: textView.text, goal: selectedTitle!, date: selectedDate!, image: "이미지", tag: selectedTag, temperature: "온도", weather: "날씨", weatherIcon: "아이콘") { _ in
-        }
-    }
-    
-    func fetchAndDisplayWeather() {
-        let city = "Busan"
-        WeatherManager.shared.fetchWeather(for: city) { result in
-            switch result {
-            case .success(let weatherData):
-                // 날씨 정보를 받아와 UI에 표시
-                DispatchQueue.main.async {
-                    self.weatherDescriptionLabel.text = weatherData.description
-                    let celsiusTemp = round(weatherData.temperature - 273.15)
-
-                    self.temperatureLabel.text = "\(celsiusTemp) °C"
-
-                    // 아이콘 이미지를 표시
-                    if let iconUrl = URL(string: weatherData.iconUrl) {
-                        DispatchQueue.global().async {
-                            if let imageData = try? Data(contentsOf: iconUrl),
-                               let iconImage = UIImage(data: imageData)
-                            {
-                                DispatchQueue.main.async {
-                                    print("###이미지 다운로드 완ㄹ")
-
-                                    self.weatherIconImageView.image = iconImage
-                                }
-                            } else {
-                                print("이미지 다운로드 변환 실패 ###")
+func fetchAndDisplayWeather() {
+    let city = "Busan"
+    WeatherManager.shared.fetchWeather(for: city) { result in
+        switch result {
+        case .success(let weatherData):
+            // 날씨 정보를 받아와 UI에 표시
+            DispatchQueue.main.async {
+                self.weatherDescriptionLabel.text = weatherData.description
+                let celsiusTemp = round(weatherData.temperature - 273.15)
+                
+                self.temperatureLabel.text = "\(celsiusTemp) °C"
+                
+                // 아이콘 이미지를 표시
+                if let iconUrl = URL(string: weatherData.iconUrl) {
+                    DispatchQueue.global().async {
+                        if let imageData = try? Data(contentsOf: iconUrl),
+                           let iconImage = UIImage(data: imageData)
+                        {
+                            DispatchQueue.main.async {
+                                print("###이미지 다운로드 완ㄹ")
+                                
+                                self.weatherIconImageView.image = iconImage
                             }
+                        } else {
+                            print("이미지 다운로드 변환 실패 ###")
                         }
                     }
                 }
-            case .failure(let error):
-                print("###날씨 정보 가져오기 실패: \(error)")
             }
+        case .failure(let error):
+            print("###날씨 정보 가져오기 실패: \(error)")
         }
     }
+}
 }
 
 extension NewDiaryViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     @objc func pickImage() {
         showImagePicker()
     }
-
+    
     func showImagePicker() {
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
         imagePicker.sourceType = .photoLibrary
         present(imagePicker, animated: true, completion: nil)
     }
-
+    
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
         picker.dismiss(animated: true, completion: nil)
         if let selectedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
@@ -335,11 +341,11 @@ extension NewDiaryViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
-
+    
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return options.count
     }
-
+    
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return options[row].rawValue
     }
